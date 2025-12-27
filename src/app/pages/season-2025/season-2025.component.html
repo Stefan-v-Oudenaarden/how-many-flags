@@ -1,2 +1,74 @@
-<app-result-editor [year]="selectedYear()" [raceID]="selectedRaceId()"></app-result-editor>
-<app-prediction-editor [year]="selectedYear()" [raceID]="selectedRaceId()"></app-prediction-editor>
+<!-- Edit Modal -->
+<hlm-dialog>
+  <button hlmDialogTrigger hlmBtn variant="outline" class="fixed top-2 right-2">✍️</button>
+  <hlm-dialog-content *brnDialogContent="let ctx">
+    <hlm-dialog-header>
+      <h3 brnDialogTitle hlm>Edit Race Flags Data</h3>
+    </hlm-dialog-header>
+
+    <brn-select
+      class="inline-block"
+      placeholder="Select some fruit"
+      [multiple]="false"
+      [(value)]="selectedRaceId"
+    >
+      <hlm-select-trigger class="w-24">
+        <hlm-select-value />
+      </hlm-select-trigger>
+      <hlm-select-content>
+        @for(race of raceIds();track race) {
+        <hlm-option [value]="race.id">{{ race.name }}</hlm-option
+        >}
+      </hlm-select-content>
+    </brn-select>
+
+    <app-result-editor [year]="selectedYear()" [raceID]="selectedRaceId()"></app-result-editor>
+    <app-prediction-editor
+      [year]="selectedYear()"
+      [raceID]="selectedRaceId()"
+    ></app-prediction-editor>
+  </hlm-dialog-content>
+</hlm-dialog>
+
+<div class="container mx-auto p-6 max-w-6xl">
+  <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-100 border-b border-gray-200">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Race</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Team</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for(result of this.raceDataService.Datasets()[selectedYear()].results; track result.id) {
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4">
+              {{ result.race }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.flags }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.drivers }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.winner }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.team }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.dnfs }}
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

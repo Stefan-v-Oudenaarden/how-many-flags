@@ -6,10 +6,13 @@ import {
   RaceResultV1,
   SeasonResultV1,
 } from '../../services/race-results-v1.service';
+import { BrnSelectImports } from '@spartan-ng/brain/select';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
 
 @Component({
   selector: 'app-result-editor',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports, HlmScrollAreaImports],
   templateUrl: './result-editor.component.html',
   styleUrl: './result-editor.component.css',
 })
@@ -54,7 +57,6 @@ export class ResultEditorComponent {
     }
 
     this.raceDataService.Datasets.set(dataSets);
-
-    console.log(this.raceDataService.Datasets()[this.year()]);
+    console.log('+', dataSets);
   }
 }

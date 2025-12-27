@@ -1,0 +1,22 @@
+[
+  { "name": "Verstappen", "team": "Red Bull Racing" },
+  { "name": "Lawson", "team": "Red Bull Racing" },
+  { "name": "Leclerc", "team": "Ferrari" },
+  { "name": "Hamilton", "team": "Ferrari" },
+  { "name": "Russell", "team": "Mercedes" },
+  { "name": "Antonelli", "team": "Mercedes" },
+  { "name": "Norris", "team": "McLaren" },
+  { "name": "Piastri", "team": "McLaren" },
+  { "name": "Alonso", "team": "Aston Martin" },
+  { "name": "Stroll", "team": "Aston Martin" },
+  { "name": "Gasly", "team": "Alpine" },
+  { "name": "Doohan", "team": "Alpine" },
+  { "name": "Sainz", "team": "Williams" },
+  { "name": "Albon", "team": "Williams" },
+  { "name": "Tsunoda", "team": "Racing Bulls" },
+  { "name": "Hadjar", "team": "Racing Bulls" },
+  { "name": "Ocon", "team": "Haas" },
+  { "name": "Bearman", "team": "Haas" },
+  { "name": "Hulkenberg", "team": "Sauber" },
+  { "name": "Bortoleto", "team": "Sauber" }
+]
