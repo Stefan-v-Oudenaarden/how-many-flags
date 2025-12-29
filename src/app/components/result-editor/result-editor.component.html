@@ -1,5 +1,5 @@
 @if(raceData) {
-<div class="container mx-auto p-6 max-w-6xl">
+<div class="container mx-auto p-6 pt-2 max-w-6xl">
   <div class="bg-white rounded-lg shadow overflow-hidden">
     <div class="overflow-x-auto">
       <table class="w-full">
@@ -19,7 +19,7 @@
               <input
                 type="text"
                 [(ngModel)]="raceData.race"
-                class="w-32 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-48 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 (ngModelChange)="onModelChange()"
               />
             </td>

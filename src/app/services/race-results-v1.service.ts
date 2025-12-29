@@ -47,6 +47,11 @@ export interface DataSetsV1 {
   [key: string]: DataSetV1;
 }
 
+type YearDataV1 = {
+  predictions: SeasonPredictionsV1;
+  results: SeasonResultV1;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -62,17 +67,18 @@ export class FlagsDataServiceV1 {
       '2025': { predictions: {}, results: [], driversWithTeams: [], drivers: [], teams: [] },
     });
 
-    this.http.get<SeasonPredictionsV1>('/data/2025/predictions.json').subscribe((predictions) => {
+    this.http.get<YearDataV1>('/data/2025/data.json').subscribe((data) => {
       let datasets = this.Datasets();
-      datasets['2025'].predictions = predictions;
+      datasets['2025'].predictions = data.predictions;
+      datasets['2025'].results = data.results;
       this.Datasets.set(datasets);
     });
 
-    this.http.get<SeasonResultV1>('/data/2025/results.json').subscribe((result) => {
-      let datasets = this.Datasets();
-      datasets['2025'].results = result;
-      this.Datasets.set(datasets);
-    });
+    // this.http.get<SeasonResultV1>('/data/2025/results.json').subscribe((result) => {
+    //   let datasets = this.Datasets();
+    //   datasets['2025'].results = result;
+    //   this.Datasets.set(datasets);
+    // });
 
     this.http.get<DriversTableV1>('/data/2025/drivers.json').subscribe((driversWithTeams) => {
       let datasets = this.Datasets();
@@ -86,10 +92,11 @@ export class FlagsDataServiceV1 {
         teams.add(pair.team);
       }
 
-      drivers.add('Nobody');
+      let sortedDrivers = [...drivers].sort();
+      sortedDrivers.push('Nobody');
 
-      datasets['2025'].drivers = [...drivers];
-      datasets['2025'].teams = [...teams];
+      datasets['2025'].drivers = sortedDrivers;
+      datasets['2025'].teams = [...teams].sort();
 
       this.Datasets.set(datasets);
     });
@@ -105,5 +112,16 @@ export class FlagsDataServiceV1 {
     return (
       this.Datasets()[year].driversWithTeams.find((pair) => pair.team == team)?.name || 'unknown'
     );
+  }
+
+  ExportYearData(year: string): string {
+    const data: YearDataV1 = {
+      predictions: this.Datasets()[year].predictions,
+      results: this.Datasets()[year].results,
+    };
+
+    console.log('export', data);
+
+    return JSON.stringify(data, null, 2);
   }
 }

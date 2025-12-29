@@ -1,18 +1,15 @@
 import { Component, effect, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  FlagsDataServiceV1,
-  RaceResultV1,
-  SeasonResultV1,
-} from '../../services/race-results-v1.service';
+
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
+
+import { FlagsDataServiceV1, RaceResultV1 } from '../../services/race-results-v1.service';
 
 @Component({
   selector: 'app-result-editor',
-  imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports, HlmScrollAreaImports],
+  imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports],
   templateUrl: './result-editor.component.html',
   styleUrl: './result-editor.component.css',
 })
@@ -57,6 +54,5 @@ export class ResultEditorComponent {
     }
 
     this.raceDataService.Datasets.set(dataSets);
-    console.log('+', dataSets);
   }
 }

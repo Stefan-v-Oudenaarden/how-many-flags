@@ -1,11 +1,15 @@
 import { Component, effect, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { BrnSelectImports } from '@spartan-ng/brain/select';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
+
 import { FlagsDataServiceV1, SeasonPredictionsV1 } from '../../services/race-results-v1.service';
 
 @Component({
   selector: 'app-prediction-editor',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports],
   templateUrl: './prediction-editor.component.html',
   styleUrl: './prediction-editor.component.css',
 })

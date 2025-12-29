@@ -45,10 +45,28 @@ export class Season2025Component {
       let raceIds: { name: string; id: string }[] = [];
       for (let key of keys) {
         let race = races[+key];
-        raceIds.push({ id: key, name: race.race || key });
+        raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
       }
 
       this.raceIds.set(raceIds);
     });
+  }
+
+  ExportSeasonData() {
+    const seasonData = this.raceDataService.ExportYearData(this.selectedYear());
+
+    // Create a Blob from the string
+    const blob = new Blob([seasonData], { type: 'application/json' });
+
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'data.json';
+
+    // Trigger the download
+    link.click();
+
+    // Clean up the URL object
+    URL.revokeObjectURL(link.href);
   }
 }

@@ -1,32 +1,46 @@
 <!-- Edit Modal -->
 <hlm-dialog>
   <button hlmDialogTrigger hlmBtn variant="outline" class="fixed top-2 right-2">✍️</button>
-  <hlm-dialog-content *brnDialogContent="let ctx">
-    <hlm-dialog-header>
-      <h3 brnDialogTitle hlm>Edit Race Flags Data</h3>
-    </hlm-dialog-header>
+  <hlm-dialog-content *brnDialogContent="let ctx" class="overflow-y-auto min-h-[70dvh] max-h-dvh">
+    <div class="container mx-auto p-6 pt-2 pb-2 max-w-6xl">
+      <div>
+        <label>Select Race: </label>
+        <brn-select
+          class="inline-block"
+          placeholder="Select some fruit"
+          [multiple]="false"
+          [(value)]="selectedRaceId"
+        >
+          <hlm-select-trigger class="w-48">
+            <hlm-select-value />
+          </hlm-select-trigger>
+          <hlm-select-content class="w-48">
+            @for(race of raceIds();track race) {
+            <hlm-option [value]="race.id">{{ race.name }}</hlm-option
+            >}
+          </hlm-select-content>
+        </brn-select>
+        <button
+          class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-1 ml-4 hover:border-transparent rounded"
+        >
+          ➕
+        </button>
+        <button
+          (click)="ExportSeasonData()"
+          class="absolute right-12 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-3 h-8.5 py-1 border border-blue-500 hover:border-transparent rounded"
+        >
+          Export
+        </button>
+      </div>
+    </div>
 
-    <brn-select
-      class="inline-block"
-      placeholder="Select some fruit"
-      [multiple]="false"
-      [(value)]="selectedRaceId"
-    >
-      <hlm-select-trigger class="w-24">
-        <hlm-select-value />
-      </hlm-select-trigger>
-      <hlm-select-content>
-        @for(race of raceIds();track race) {
-        <hlm-option [value]="race.id">{{ race.name }}</hlm-option
-        >}
-      </hlm-select-content>
-    </brn-select>
-
-    <app-result-editor [year]="selectedYear()" [raceID]="selectedRaceId()"></app-result-editor>
-    <app-prediction-editor
-      [year]="selectedYear()"
-      [raceID]="selectedRaceId()"
-    ></app-prediction-editor>
+    <div class="">
+      <app-result-editor [year]="selectedYear()" [raceID]="selectedRaceId()"></app-result-editor>
+      <app-prediction-editor
+        [year]="selectedYear()"
+        [raceID]="selectedRaceId()"
+      ></app-prediction-editor>
+    </div>
   </hlm-dialog-content>
 </hlm-dialog>
 
@@ -63,7 +77,15 @@
               {{ result.team }}
             </td>
             <td class="px-6 py-4">
-              {{ result.dnfs }}
+              @if(result.dnfs.length < 4 && result.dnfs.length > 0 ) {
+              <p class="max-w-40 text-ellipsis overflow-hidden">
+                {{ result.dnfs }}
+              </p>
+              }@else {
+              <p class="max-w-40 text-ellipsis overflow-hidden">
+                {{ result.dnfs.length }}
+              </p>
+              }
             </td>
           </tr>
           }
