@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -17,24 +17,26 @@ export class PredictionEditorComponent {
   public year = input.required<string>();
   public raceID = input.required<string>();
 
+  public updatedData = output();
+
   raceData: SeasonPredictionsV1 = {};
   raceDataService = inject(FlagsDataServiceV1);
 
   participants: Set<string> = new Set();
+
+  public newParticipantName: string = '';
   public dataLoaded = false;
 
   constructor() {
     effect(() => {
       let dataSet = this.raceDataService.Datasets()[this.year()];
+      this.participants = new Set();
       if (Object.keys(dataSet).length > 0) {
         this.raceData = dataSet.predictions;
-        this.participants = new Set();
 
-        for (let prediction of Object.keys(dataSet.predictions)) {
-          let names = Object.keys(dataSet.predictions[prediction]);
-          for (let name of names) {
-            this.participants.add(name);
-          }
+        const predictionParticpants = Object.keys(dataSet.predictions[this.raceID()]);
+        for (const p of predictionParticpants) {
+          this.participants.add(p);
         }
 
         this.dataLoaded = true;
@@ -46,5 +48,18 @@ export class PredictionEditorComponent {
     let dataSets = this.raceDataService.Datasets();
     dataSets[this.year()].predictions = this.raceData;
     this.raceDataService.Datasets.set(dataSets);
+
+    this.updatedData.emit();
+  }
+
+  AddParticipant(name: string) {
+    if (!name) {
+      return;
+    }
+
+    this.raceDataService.AddParticipantToPredictions(this.year(), this.raceID(), name);
+    this.participants.add(name);
+    this.newParticipantName = '';
+    this.updatedData.emit();
   }
 }

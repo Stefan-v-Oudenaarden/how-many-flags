@@ -872,7 +872,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Sainz", "Alonso", "Bortoleto", "Lawson", "Doohan"],
-      "race": "1 - Australia"
+      "race": "1 - Australia",
+      "finished": true
     },
     {
       "id": 1,
@@ -881,7 +882,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": [],
-      "race": "2 - Japan"
+      "race": "2 - Japan",
+      "finished": true
     },
     {
       "id": 2,
@@ -890,7 +892,8 @@
       "winner": "Piastri",
       "team": "McLaren",
       "dnfs": ["Sainz"],
-      "race": "3 - Bahrain"
+      "race": "3 - Bahrain",
+      "finished": true
     },
     {
       "id": 3,
@@ -899,7 +902,8 @@
       "winner": "Piastri",
       "team": "McLaren",
       "dnfs": ["Tsunoda", "Gasly"],
-      "race": "4 - Saudi Arabia"
+      "race": "4 - Saudi Arabia",
+      "finished": true
     },
     {
       "id": 4,
@@ -908,7 +912,8 @@
       "winner": "Piastri",
       "team": "McLaren",
       "dnfs": ["Lawson", "Bortoleto", "Bearman", "Doohan"],
-      "race": "5 - Miami"
+      "race": "5 - Miami",
+      "finished": true
     },
     {
       "id": 5,
@@ -917,7 +922,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": ["Antonelli", "Ocon"],
-      "race": "6 - Italy"
+      "race": "6 - Italy",
+      "finished": true
     },
     {
       "id": 6,
@@ -926,7 +932,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Alonso", "Gasly"],
-      "race": "7 - Monaco"
+      "race": "7 - Monaco",
+      "finished": true
     },
     {
       "id": 7,
@@ -935,7 +942,8 @@
       "winner": "Piastri",
       "team": "McLaren",
       "dnfs": ["Antonelli", "Albon"],
-      "race": "8 - Spain"
+      "race": "8 - Spain",
+      "finished": true
     },
     {
       "id": 8,
@@ -944,7 +952,8 @@
       "winner": "Russell",
       "team": "Mercedes",
       "dnfs": ["Norris", "Lawson", "Albon"],
-      "race": "9 - Canada"
+      "race": "9 - Canada",
+      "finished": true
     },
     {
       "id": 9,
@@ -953,7 +962,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Albon", "Verstappen", "Antonelli"],
-      "race": "10 - Austria"
+      "race": "10 - Austria",
+      "finished": true
     },
     {
       "id": 10,
@@ -962,7 +972,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Antonelli", "Hadjar", "Bortoleto", "Lawson"],
-      "race": "11 - UK"
+      "race": "11 - UK",
+      "finished": true
     },
     {
       "id": 11,
@@ -971,7 +982,8 @@
       "winner": "Piastri",
       "team": "McLaren",
       "dnfs": [],
-      "race": "12 - Belgium"
+      "race": "12 - Belgium",
+      "finished": true
     },
     {
       "id": 12,
@@ -980,7 +992,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Bearman"],
-      "race": "13 - Hungary"
+      "race": "13 - Hungary",
+      "finished": true
     },
     {
       "id": 13,
@@ -989,7 +1002,8 @@
       "winner": "Piastri",
       "team": "McLaren",
       "dnfs": ["Norris", "Leclerc", "Hamilton"],
-      "race": "14 - Netherlands"
+      "race": "14 - Netherlands",
+      "finished": true
     },
     {
       "id": 14,
@@ -998,7 +1012,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": ["Hulkenberg", "Alonso"],
-      "race": "15 - Monza"
+      "race": "15 - Monza",
+      "finished": true
     },
     {
       "id": 15,
@@ -1007,7 +1022,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": ["Piastri"],
-      "race": "16 - Baku"
+      "race": "16 - Baku",
+      "finished": true
     },
     {
       "id": 16,
@@ -1016,7 +1032,8 @@
       "winner": "Russell",
       "team": "Mercedes",
       "dnfs": [],
-      "race": "17 - Singapore"
+      "race": "17 - Singapore",
+      "finished": true
     },
     {
       "id": 17,
@@ -1025,7 +1042,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": ["Sainz"],
-      "race": "18 - Texas"
+      "race": "18 - Texas",
+      "finished": true
     },
     {
       "id": 18,
@@ -1034,7 +1052,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Sainz", "Alonso", "Hulkenberg", "Lawson"],
-      "race": "19 - Mexico"
+      "race": "19 - Mexico",
+      "finished": true
     },
     {
       "id": 19,
@@ -1043,7 +1062,8 @@
       "winner": "Norris",
       "team": "McLaren",
       "dnfs": ["Leclerc", "Hamilton", "Bortoleto"],
-      "race": "20 - Brazil"
+      "race": "20 - Brazil",
+      "finished": true
     },
     {
       "id": 20,
@@ -1052,7 +1072,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": ["Albon", "Bortoleto", "Stroll"],
-      "race": "21 - Vegas"
+      "race": "21 - Vegas",
+      "finished": true
     },
     {
       "id": 21,
@@ -1061,7 +1082,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": ["Stroll", "Hadjar", "Bearman", "Hulkenberg"],
-      "race": "22 - Qatar "
+      "race": "22 - Qatar ",
+      "finished": true
     },
     {
       "id": 22,
@@ -1070,7 +1092,8 @@
       "winner": "Verstappen",
       "team": "Red Bull Racing",
       "dnfs": [],
-      "race": "23 - Abu Dhabi"
+      "race": "23 - Abu Dhabi",
+      "finished": true
     }
   ]
 }

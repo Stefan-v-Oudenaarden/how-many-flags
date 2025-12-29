@@ -11,7 +11,7 @@
             <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-200 border-b-1">
           @for (participant of participants; track participant) {
           <tr class="hover:bg-gray-50 transition-colors">
             <td class="px-6 py-4 font-medium text-gray-900">
@@ -74,6 +74,24 @@
           }
         </tbody>
       </table>
+
+      <div class="flex px-3 py-2 justify-around">
+        <input
+          [(ngModel)]="newParticipantName"
+          placeholder="New Participant..."
+          id="name"
+          class="w-104 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <button
+          hlmBtn
+          type="submit"
+          class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-3 h-8.5 py-1 border border-blue-500 hover:border-transparent rounded"
+          (click)="AddParticipant(newParticipantName)"
+        >
+          Add Participant
+        </button>
+      </div>
     </div>
   </div>
 </div>

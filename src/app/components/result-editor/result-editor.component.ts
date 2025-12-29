@@ -1,21 +1,24 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 
 import { FlagsDataServiceV1, RaceResultV1 } from '../../services/race-results-v1.service';
 
 @Component({
   selector: 'app-result-editor',
-  imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports],
+  imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports, HlmTextareaImports],
   templateUrl: './result-editor.component.html',
   styleUrl: './result-editor.component.css',
 })
 export class ResultEditorComponent {
   public year = input.required<string>();
   public raceID = input.required<string>();
+
+  public updatedData = output();
 
   raceData: RaceResultV1 | undefined = undefined;
   raceDataService = inject(FlagsDataServiceV1);
@@ -54,5 +57,7 @@ export class ResultEditorComponent {
     }
 
     this.raceDataService.Datasets.set(dataSets);
+
+    this.updatedData.emit();
   }
 }

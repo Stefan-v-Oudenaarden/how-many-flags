@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -39,17 +39,21 @@ export class Season2025Component {
 
   constructor() {
     effect(() => {
-      let data = this.raceDataService.Datasets();
-      let races = data[this.selectedYear()].results;
-      let keys = Object.keys(races);
-      let raceIds: { name: string; id: string }[] = [];
-      for (let key of keys) {
-        let race = races[+key];
-        raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
-      }
-
-      this.raceIds.set(raceIds);
+      this.UpdateEditableData();
     });
+  }
+
+  UpdateEditableData() {
+    let data = this.raceDataService.Datasets();
+    let races = data[this.selectedYear()].results;
+    let keys = Object.keys(races);
+    let raceIds: { name: string; id: string }[] = [];
+    for (let key of keys) {
+      let race = races[+key];
+      raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
+    }
+
+    this.raceIds.set(raceIds);
   }
 
   ExportSeasonData() {
@@ -68,5 +72,13 @@ export class Season2025Component {
 
     // Clean up the URL object
     URL.revokeObjectURL(link.href);
+  }
+
+  AddRaceToSeason() {
+    this.raceDataService.AddRaceToYear(this.selectedYear());
+    this.UpdateEditableData();
+
+    const newRaceId = this.raceIds()[this.raceIds().length - 1];
+    this.selectedRaceId.set(newRaceId.id);
   }
 }

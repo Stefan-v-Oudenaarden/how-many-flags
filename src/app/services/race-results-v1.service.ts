@@ -18,6 +18,8 @@ export type RaceResultV1 = {
   winner: string;
   team: string;
   dnfs: string[];
+  finished: boolean;
+  notes: string;
 };
 
 export type RaceResultPredictionV1 = {
@@ -74,12 +76,6 @@ export class FlagsDataServiceV1 {
       this.Datasets.set(datasets);
     });
 
-    // this.http.get<SeasonResultV1>('/data/2025/results.json').subscribe((result) => {
-    //   let datasets = this.Datasets();
-    //   datasets['2025'].results = result;
-    //   this.Datasets.set(datasets);
-    // });
-
     this.http.get<DriversTableV1>('/data/2025/drivers.json').subscribe((driversWithTeams) => {
       let datasets = this.Datasets();
       datasets['2025'].driversWithTeams = driversWithTeams;
@@ -112,6 +108,61 @@ export class FlagsDataServiceV1 {
     return (
       this.Datasets()[year].driversWithTeams.find((pair) => pair.team == team)?.name || 'unknown'
     );
+  }
+
+  AddRaceToYear(year: string) {
+    const data = this.Datasets()[year];
+    let raceId = data.results.length;
+
+    let raceResult: RaceResultV1 = {
+      race: 'Unknown',
+      id: raceId,
+      flags: 0,
+      drivers: 20,
+      winner: 'Placeholder',
+      team: 'Placeholder Team',
+      dnfs: [],
+      finished: false,
+      notes: '',
+    };
+
+    let participansSet: Set<string> = new Set();
+
+    for (let prediction of Object.keys(data.predictions)) {
+      let names = Object.keys(data.predictions[prediction]);
+      for (let name of names) {
+        participansSet.add(name);
+      }
+    }
+
+    let predictions: RacePredictionsV1 = {};
+
+    for (const p of participansSet) {
+      predictions[p] = {
+        flags: 0,
+        drivers: 0,
+        dnf: '',
+        winner: '',
+      };
+    }
+
+    data.results.push(raceResult);
+    data.predictions[raceId.toString()] = predictions;
+
+    this.Datasets.set(this.Datasets());
+  }
+
+  AddParticipantToPredictions(year: string, race: string, name: string) {
+    let dataSets = this.Datasets();
+    let racePredictions = dataSets[year].predictions[race];
+    racePredictions[name] = {
+      dnf: '',
+      winner: '',
+    };
+
+    this.Datasets.set(dataSets);
+
+    console.log(this.Datasets());
   }
 
   ExportYearData(year: string): string {

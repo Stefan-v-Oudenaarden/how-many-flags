@@ -98,6 +98,23 @@
           </tr>
         </tbody>
       </table>
+      <div class="px-3 pb-2">
+        <textarea
+          hlmTextarea
+          class="w-full"
+          placeholder="Any notes for this race..."
+          [(ngModel)]="raceData.notes"
+        ></textarea>
+      </div>
+      <div class="flex justify-end-safe mx-4">
+        <label>Race Completed</label>
+        <input
+          type="checkbox"
+          [(ngModel)]="raceData.finished"
+          class="w-4 px-4 ml-4 h-8.5 py-2 border border-gray-300 rounded-md"
+          (ngModelChange)="onModelChange()"
+        />
+      </div>
     </div>
   </div>
 </div>
