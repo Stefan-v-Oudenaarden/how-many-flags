@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export type DriverV1 = {
@@ -7,6 +7,14 @@ export type DriverV1 = {
 };
 
 export type DriversTableV1 = DriverV1[];
+
+export type DriverTableOverrideV1 = {
+  ids: number[];
+  driver: string;
+  team: string;
+};
+
+export type DriversTableOverridesV1 = DriverTableOverrideV1[];
 
 export type SeasonResultV1 = RaceResultV1[];
 
@@ -43,6 +51,7 @@ export interface DataSetV1 {
   driversWithTeams: DriversTableV1;
   drivers: string[];
   teams: string[];
+  driverOverrides: DriversTableOverridesV1;
 }
 
 export interface DataSetsV1 {
@@ -66,13 +75,29 @@ export class FlagsDataServiceV1 {
 
   constructor() {
     this.Datasets.set({
-      '2025': { predictions: {}, results: [], driversWithTeams: [], drivers: [], teams: [] },
+      '2025': {
+        predictions: {},
+        results: [],
+        driversWithTeams: [],
+        drivers: [],
+        teams: [],
+        driverOverrides: [],
+      },
+      '2026': {
+        predictions: {},
+        results: [],
+        driversWithTeams: [],
+        drivers: [],
+        teams: [],
+        driverOverrides: [],
+      },
     });
 
     this.http.get<YearDataV1>('/data/2025/data.json').subscribe((data) => {
       let datasets = this.Datasets();
       datasets['2025'].predictions = data.predictions;
       datasets['2025'].results = data.results;
+
       this.Datasets.set(datasets);
     });
 
@@ -96,18 +121,34 @@ export class FlagsDataServiceV1 {
 
       this.Datasets.set(datasets);
     });
+
+    this.http
+      .get<DriversTableOverridesV1>('/data/2025/driver-overrides.json')
+      .subscribe((overrides) => {
+        let datasets = this.Datasets();
+        datasets[2025].driverOverrides = overrides;
+        this.Datasets.set(datasets);
+      });
   }
 
-  DriverToTeam(year: string, driver: string): string {
+  DriverToTeam(year: string, id: number, driver: string): string {
+    let override = this.Datasets()[year].driverOverrides.find((or) => {
+      return or.ids.includes(id) && or.driver === driver;
+    });
+
+    if (override) {
+      return override.team;
+    }
+
     return (
       this.Datasets()[year].driversWithTeams.find((pair) => pair.name == driver)?.team || 'unknown'
     );
   }
 
-  TeamToDriver(year: string, team: string): string {
-    return (
-      this.Datasets()[year].driversWithTeams.find((pair) => pair.team == team)?.name || 'unknown'
-    );
+  TeamToDrivers(year: string, team: string): string[] {
+    return this.Datasets()
+      [year].driversWithTeams.filter((pair) => pair.team == team)
+      .map((e) => e.name);
   }
 
   AddRaceToYear(year: string) {

@@ -217,7 +217,7 @@
         "flags": 1,
         "drivers": 18,
         "winner": "Piastri",
-        "dnf": "Gasley"
+        "dnf": "Gasly"
       },
       "Morrigan": {
         "flags": 2,
@@ -261,7 +261,7 @@
         "flags": 2,
         "drivers": 18,
         "winner": "Norris",
-        "dnf": "Hulkenburg"
+        "dnf": "Hulkenberg"
       }
     },
     "7": {
@@ -275,7 +275,7 @@
         "flags": 0,
         "drivers": 19,
         "winner": "Norris",
-        "dnf": "-"
+        "dnf": "Nobody"
       },
       "Ben": {
         "flags": 1,
@@ -445,7 +445,7 @@
         "flags": 1,
         "drivers": 17,
         "winner": "Piastri",
-        "dnf": "Gasley"
+        "dnf": "Gasly"
       },
       "Morrigan": {
         "flags": 2,
@@ -483,7 +483,7 @@
         "flags": 0,
         "drivers": 20,
         "winner": "Piastri",
-        "dnf": "-"
+        "dnf": "Nobody"
       },
       "Morrigan": {
         "flags": 1,
@@ -617,7 +617,7 @@
       "Ben": {
         "flags": 1,
         "drivers": 19,
-        "winner": "Placeholder",
+        "winner": "Verstappen",
         "dnf": "Lawson"
       },
       "MoonWolf": {
@@ -662,7 +662,7 @@
         "flags": 4,
         "drivers": 15,
         "winner": "Verstappen",
-        "dnf": "Russel"
+        "dnf": "Russell"
       },
       "Alice": {
         "flags": 2,
@@ -700,7 +700,7 @@
         "flags": 1,
         "drivers": 19,
         "winner": "Norris",
-        "dnf": "Russel"
+        "dnf": "Russell"
       },
       "Alice": {
         "flags": 1,
@@ -736,7 +736,7 @@
         "flags": 3,
         "drivers": 16,
         "winner": "Antonelli",
-        "dnf": "Russel"
+        "dnf": "Russell"
       },
       "Alice": {
         "flags": 1,
@@ -748,7 +748,7 @@
         "flags": 1,
         "drivers": 18,
         "winner": "Norris",
-        "dnf": "Hulkenburg"
+        "dnf": "Hulkenberg"
       }
     },
     "20": {
@@ -798,13 +798,13 @@
         "flags": 1,
         "drivers": 18,
         "winner": "Piastri",
-        "dnf": "Lewis"
+        "dnf": "Hamilton"
       },
       "Ben": {
         "flags": 0,
         "drivers": 20,
         "winner": "Piastri",
-        "dnf": "-"
+        "dnf": "Nobody"
       },
       "MoonWolf": {
         "flags": 2,
@@ -860,7 +860,7 @@
         "flags": 1,
         "drivers": 18,
         "winner": "Verstappen",
-        "dnf": "Hamliton"
+        "dnf": "Hamilton"
       }
     }
   },
