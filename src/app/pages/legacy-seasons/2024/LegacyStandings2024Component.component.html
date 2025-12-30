@@ -1,0 +1,34 @@
+<div class="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
+  <div class="max-w-450 mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">How Many Flags 2024</h1>
+      <p class="text-gray-600">Final Standings</p>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+      <!-- Left Column - Overall Leaderboard -->
+
+      <div class="space-y-4">
+        <app-legacy-scoreblock-hero
+          [scoreCategory]="leaderboardCategory"
+        ></app-legacy-scoreblock-hero>
+      </div>
+
+      <!-- Right Column - Categories -->
+      <div class="space-4 grid grid-cols-2 gap-4">
+        <!-- Flags -->
+        <app-legacy-scoreblock [scoreCategory]="flagsCategory"></app-legacy-scoreblock>
+
+        <!-- Drivers -->
+        <app-legacy-scoreblock [scoreCategory]="driversCategory"></app-legacy-scoreblock>
+
+        <!-- Winner -->
+        <app-legacy-scoreblock [scoreCategory]="winnerCategory"></app-legacy-scoreblock>
+
+        <!-- DNF -->
+        <app-legacy-scoreblock [scoreCategory]="dnfCategory"></app-legacy-scoreblock>
+      </div>
+    </div>
+  </div>
+</div>
