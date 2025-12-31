@@ -1,0 +1,168 @@
+<div class="grid grid-cols-1 md:grid-cols-2 space-4 gap-4">
+  <!-- Results-->
+  <div class="space-4 gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
+    <div>
+      <h3
+        class="text-sm font-semibold text-gray-800 bg-gray-100 border-b border-gray-200 text-center py-3"
+      >
+        Results
+      </h3>
+    </div>
+
+    <div
+      class="grid grid-cols-1 space-2 gap-2"
+      [class]="{
+        'md:grid-cols-2': results().notes && results().notes.length > 1
+      }"
+    >
+      <table class="w-full">
+        <tbody class="divide-y divide-gray-200">
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-3 text-left text-sm font-semibold text-gray-700 align-top">Flags</td>
+            <td class="px-6 py-3 text-left text-sm text-gray-900 align-top">
+              <div>{{ results().flags }}</div>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-3 text-left text-sm font-semibold text-gray-700 align-top">
+              Drivers
+            </td>
+            <td class="px-6 py-3 text-left text-sm text-gray-900 align-top">
+              <div>{{ results().drivers }}</div>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-3 text-left text-sm font-semibold text-gray-700 align-top">
+              Winner
+            </td>
+            <td class="px-6 py-3 text-left text-sm text-gray-900 align-top">
+              <div>{{ results().winner }}</div>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-3 text-left text-sm font-semibold text-gray-700 align-top">Team</td>
+            <td class="px-6 py-3 text-left text-sm text-gray-900 align-top">
+              <div>{{ results().team }}</div>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-3 text-left text-sm font-semibold text-gray-700 align-top">DNF</td>
+            <td class="px-6 py-3 text-left text-sm text-gray-900 align-top">
+              <div>{{ listToHtmlString(results().dnfs) }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      @if(results().notes && results().notes.length > 1) {
+      <div class="px-3 pb-2">
+        <div>
+          <label class="text-left text-sm font-semibold text-gray-700 align-top">Notes:</label>
+          <p class="bg-gray-50 mt-2 p-2 rounded-md">
+            {{ results().notes }}
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Predictions-->
+  <div class="space-4 gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
+    <div>
+      <h3
+        class="text-sm font-semibold text-gray-800 bg-gray-100 border-b border-gray-200 text-center py-3"
+      >
+        Predictions
+      </h3>
+    </div>
+    <table class="w-full pt-0 mt-0">
+      <thead class="bg-blue-50 border-b border-gray-200">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Participant</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-200 border-b">
+        @for(participant of participants(); track participant) {
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="px-6 py-4 font-medium text-gray-900">
+            {{ participant }}
+          </td>
+          <td class="px-3 py-2">
+            <div>
+              {{ predictions()[participant].flags }}
+            </div>
+          </td>
+          <td class="px-3 py-2">
+            <div>
+              {{ predictions()[participant].drivers }}
+            </div>
+          </td>
+          <td class="px-3 py-2">
+            <div>
+              {{ predictions()[participant].winner }}
+            </div>
+          </td>
+          <td class="px-3 py-2">
+            <div>
+              {{ predictions()[participant].dnf }}
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Scores-->
+<div class="space-4 grid grid-cols-2 md:grid-cols-5 gap-4">
+  <app-scoreblock-v1
+    [scores]="scores()"
+    [displayTop]="false"
+    selectedScore="totalScore"
+    displayName="Total"
+    displayIcon="/icons/trophy-sharp.svg"
+    displayIconStyle="bg-linear-to-r from-yellow-400 to-orange-500"
+  ></app-scoreblock-v1>
+
+  <app-scoreblock-v1
+    [scores]="scores()"
+    [displayTop]="false"
+    selectedScore="flagScore"
+    displayName="Flags"
+    displayIcon="/icons/flag-sharp.svg"
+    displayIconStyle="bg-red-500"
+  ></app-scoreblock-v1>
+
+  <app-scoreblock-v1
+    [scores]="scores()"
+    [displayTop]="false"
+    selectedScore="driverScore"
+    displayName="Drivers"
+    displayIcon="/icons/people-sharp.svg"
+    displayIconStyle="bg-blue-500"
+  ></app-scoreblock-v1>
+
+  <app-scoreblock-v1
+    [scores]="scores()"
+    [displayTop]="false"
+    selectedScore="winnerScore"
+    displayName="Winner"
+    displayIcon="/icons/car-sport-sharp.svg"
+    displayIconStyle="bg-yellow-500"
+  ></app-scoreblock-v1>
+
+  <app-scoreblock-v1
+    [scores]="scores()"
+    [displayTop]="false"
+    selectedScore="dnfScore"
+    displayName="DNF"
+    displayIcon="/icons/car-crash.svg"
+    displayIconStyle="bg-gray-500"
+  ></app-scoreblock-v1>
+</div>

@@ -56,6 +56,10 @@ export class ScoreV1Service {
     }
 
     for (const race of races) {
+      if (!race.finished) {
+        continue;
+      }
+
       const predictions = racePredictions[race.id];
       const racePredictionsScores: racePredictionScores = {};
 

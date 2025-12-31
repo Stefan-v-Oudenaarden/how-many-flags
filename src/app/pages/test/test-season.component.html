@@ -58,12 +58,13 @@
       </hlm-dialog-content>
     </hlm-dialog>
 
-    <hlm-tabs tab="Standings" class="w-full">
+    <hlm-tabs tab="Last Race" class="w-full">
       <hlm-tabs-list aria-label="Tabs">
         <button hlmTabsTrigger="Standings">Standings</button>
         <button hlmTabsTrigger="Last Race">Last Race</button>
         <button hlmTabsTrigger="Races">Races</button>
       </hlm-tabs-list>
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ lastRaceResults().race }}</h1>
       <div hlmTabsContent="Standings">
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
           <!-- Left Column - Overall Leaderboard -->
@@ -122,52 +123,13 @@
         </div>
       </div>
       <div hlmTabsContent="Last Race">
-        <div class="space-4 grid grid-cols-2 md:grid-cols-5 gap-4">
-          <app-scoreblock-v1
-            [scores]="lastRaceScores()"
-            [displayTop]="false"
-            selectedScore="totalScore"
-            displayName="Total"
-            displayIcon="/icons/trophy-sharp.svg"
-            displayIconStyle="bg-linear-to-r from-yellow-400 to-orange-500"
-          ></app-scoreblock-v1>
-
-          <app-scoreblock-v1
-            [scores]="lastRaceScores()"
-            [displayTop]="false"
-            selectedScore="flagScore"
-            displayName="Flags"
-            displayIcon="/icons/flag-sharp.svg"
-            displayIconStyle="bg-red-500"
-          ></app-scoreblock-v1>
-
-          <app-scoreblock-v1
-            [scores]="lastRaceScores()"
-            [displayTop]="false"
-            selectedScore="driverScore"
-            displayName="Drivers"
-            displayIcon="/icons/people-sharp.svg"
-            displayIconStyle="bg-blue-500"
-          ></app-scoreblock-v1>
-
-          <app-scoreblock-v1
-            [scores]="lastRaceScores()"
-            [displayTop]="false"
-            selectedScore="winnerScore"
-            displayName="Winner"
-            displayIcon="/icons/car-sport-sharp.svg"
-            displayIconStyle="bg-yellow-500"
-          ></app-scoreblock-v1>
-
-          <app-scoreblock-v1
-            [scores]="lastRaceScores()"
-            [displayTop]="false"
-            selectedScore="dnfScore"
-            displayName="DNF"
-            displayIcon="/icons/car-crash.svg"
-            displayIconStyle="bg-gray-500"
-          ></app-scoreblock-v1>
-        </div>
+        <app-race-view-v1
+          [scores]="lastRaceScores()"
+          [results]="lastRaceResults()"
+          [predictions]="lastRacePrediction()"
+          [participants]="lastRaceParticipants()"
+        >
+        </app-race-view-v1>
       </div>
       <div hlmTabsContent="Races"></div>
     </hlm-tabs>

@@ -26,6 +26,7 @@ import {
   seasonPredictionScores,
   totalPredictionScores,
 } from '../../services/score-v1.service';
+import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
 
 @Component({
   selector: 'app-season-2025',
@@ -43,6 +44,7 @@ import {
     HlmInputImports,
     ScoreblockHeroV1Component,
     ScoreblockV1Component,
+    RaceViewV1Component,
   ],
   templateUrl: './test-season.component.html',
   styleUrl: './test-season.component.css',
@@ -59,8 +61,9 @@ export class TestSeasonComponent {
   public totalScores = signal<totalPredictionScores>({});
 
   public lastRaceScores = signal<racePredictionScores>({});
-  public lastRacePrediction = signal<RacePredictionsV1>({});
   public lastRaceResults = signal<RaceResultV1>({} as any);
+  public lastRacePrediction = signal<RacePredictionsV1>({});
+  public lastRaceParticipants = signal<string[]>([]);
 
   public dataLoaded = false;
 
@@ -76,17 +79,23 @@ export class TestSeasonComponent {
     const data = this.raceDataService.Datasets();
     const races = data[this.selectedYear()].results;
     const keys = Object.keys(races);
-
-    let lastRaceId = races.length - 1;
+    let completedRaceKeys: number[] = [];
 
     for (let key of keys) {
       let race = races[+key];
       raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
+
+      if (race.finished) {
+        completedRaceKeys.push(race.id);
+      }
     }
+
+    const lastRaceId = completedRaceKeys[completedRaceKeys.length - 1];
 
     this.raceIds.set(raceIds);
 
     this.lastRacePrediction.set(data[this.selectedYear()].predictions[lastRaceId]);
+    this.lastRaceParticipants.set(Object.keys(this.lastRacePrediction()));
     this.lastRaceResults.set(races[lastRaceId]);
 
     this.CalculateSeasonScores();
@@ -132,5 +141,13 @@ export class TestSeasonComponent {
 
     const newRaceId = this.raceIds()[this.raceIds().length - 1];
     this.selectedRaceId.set(newRaceId.id);
+  }
+
+  listToHtmlString(items: string[]): string {
+    if (items.length === 0) {
+      return 'None';
+    }
+
+    return items.join(', ');
   }
 }
