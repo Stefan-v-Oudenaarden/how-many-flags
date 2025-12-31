@@ -4,10 +4,10 @@ import { HomeComponent } from './pages/home/home.component';
 export const routes: Routes = [
   { path: 'home', title: 'How Many Flags', component: HomeComponent },
   {
-    path: '2025',
-    title: '2025 Season',
+    path: 'test',
+    title: 'Test Season',
     loadComponent: () =>
-      import('./pages/season-2025/season-2025.component').then((m) => m.Season2025Component),
+      import('./pages/test/test-season.component').then((m) => m.TestSeasonComponent),
   },
   {
     path: '2026',

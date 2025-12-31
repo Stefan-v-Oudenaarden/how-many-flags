@@ -1,0 +1,43 @@
+<div class="bg-white rounded-2xl shadow-lg p-4 hover:shadow-xl transition-shadow">
+  <div class="flex items-center gap-3 mb-8 justify-center">
+    <h2 class="text-2xl font-bold text-gray-800">
+      {{ scoreCategory().year }}
+    </h2>
+  </div>
+
+  <div class="space-y-1">
+    @for (line of scoreCategory().scores; track line.name; let i = $index) { @if(line.place){
+    <div
+      class="flex items-center justify-between p-2 rounded-xl transition-all"
+      [class]="placeBackground(line?.place)"
+    >
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <img [src]="avatars.Avatars.get(line.name)?.url" class="w-10 h-10 rounded-xl" />
+          @if (line?.place === 1) {
+          <div
+            class="absolute -top-3 -right-4 bg-transparent text-white w-8 h-8 rounded-full flex items-center justify-center text-2xl font-bold rotate-45"
+          >
+            👑
+          </div>
+          } @if (line.place) {
+          <div
+            class="absolute -bottom-3 -right-3 bg-transparent text-white w-8 h-8 rounded-full flex items-center justify-center text-xl font-bold"
+          >
+            @if(line.place === 1) { 🥇 }@else if(line.place === 2) { 🥈 }@else if(line.place===3) {
+            🥉 }
+          </div>
+          }
+        </div>
+        <div>
+          <span class="font-bold text-xl text-gray-800">{{ line.name }}</span>
+          <div class="text-sm text-gray-500">#{{ i + 1 }}</div>
+        </div>
+      </div>
+      <div class="text-right">
+        <div class="text-2xl font-bold text-gray-800">{{ line.score }}</div>
+      </div>
+    </div>
+    }}
+  </div>
+</div>

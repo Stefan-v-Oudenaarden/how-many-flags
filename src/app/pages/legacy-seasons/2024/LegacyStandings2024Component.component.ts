@@ -10,11 +10,17 @@ import {
   flagsCategory2024,
   leaderboardCategory2024,
   winnerCategory2024,
-} from '../2025/legacy-data';
+} from '../legacy-data';
+import { TopNavComponent } from '../../../components/top-nav/top-nav.component';
 
 @Component({
   selector: 'app-legacy-standings-2024',
-  imports: [CommonModule, LegacyScoreblockComponent, LegacyScoreblockHeroComponent],
+  imports: [
+    CommonModule,
+    LegacyScoreblockComponent,
+    LegacyScoreblockHeroComponent,
+    TopNavComponent,
+  ],
   templateUrl: './LegacyStandings2024Component.component.html',
   styleUrl: './LegacyStandings2024Component.component.css',
 })

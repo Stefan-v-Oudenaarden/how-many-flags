@@ -10,6 +10,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { FlagsDataServiceV1 } from '../../services/race-results-v1.service';
 import { PredictionEditorComponent } from '../../components/prediction-editor/prediction-editor.component';
 import { ResultEditorComponent } from '../../components/result-editor/result-editor.component';
+import { TopNavComponent } from '../../components/top-nav/top-nav.component';
 
 type seasonPredictionScores = {
   [key: string]: racePredictionScores;
@@ -42,11 +43,12 @@ type predictionScores = {
     HlmDialogImports,
     BrnSelectImports,
     HlmSelectImports,
+    TopNavComponent,
   ],
-  templateUrl: './season-2025.component.html',
-  styleUrl: './season-2025.component.css',
+  templateUrl: './test-season.component.html',
+  styleUrl: './test-season.component.css',
 })
-export class Season2025Component {
+export class TestSeasonComponent {
   public raceDataService = inject(FlagsDataServiceV1);
 
   public selectedRaceId = signal<string>('0');

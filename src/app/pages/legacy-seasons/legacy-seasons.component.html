@@ -1,1 +1,19 @@
-<p>legacy-seasons works!</p>
+<div class="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50">
+  <app-top-nav activeItem="Legacy Seasons"></app-top-nav>
+  <div class="max-w-450 mx-auto">
+    <div class="space-4 grid grid-cols-1 md:grid-cols-2 gap-4 py-4 px-16">
+      <a [routerLink]="['2025']"
+        ><app-legacy-season-preview [scoreCategory]="season2025Scores"></app-legacy-season-preview
+      ></a>
+      <a [routerLink]="['2024']"
+        ><app-legacy-season-preview [scoreCategory]="season2024Scores"></app-legacy-season-preview
+      ></a>
+      <a [routerLink]="['2023']"
+        ><app-legacy-season-preview [scoreCategory]="season2023Scores"></app-legacy-season-preview
+      ></a>
+      <a [routerLink]="['2022']"
+        ><app-legacy-season-preview [scoreCategory]="season2022Scores"></app-legacy-season-preview
+      ></a>
+    </div>
+  </div>
+</div>

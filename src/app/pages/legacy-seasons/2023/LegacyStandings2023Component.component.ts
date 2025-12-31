@@ -10,11 +10,17 @@ import {
   lastCategory2023,
   leaderboardCategory2023,
   winnerCategory2023,
-} from '../2025/legacy-data';
+} from '../legacy-data';
+import { TopNavComponent } from '../../../components/top-nav/top-nav.component';
 
 @Component({
   selector: 'app-legacy-standings-2023',
-  imports: [CommonModule, LegacyScoreblockComponent, LegacyScoreblockHeroComponent],
+  imports: [
+    CommonModule,
+    LegacyScoreblockComponent,
+    LegacyScoreblockHeroComponent,
+    TopNavComponent,
+  ],
   templateUrl: './LegacyStandings2023Component.component.html',
   styleUrl: './LegacyStandings2023Component.component.css',
 })

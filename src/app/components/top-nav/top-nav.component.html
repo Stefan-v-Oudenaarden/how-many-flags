@@ -1,0 +1,49 @@
+<nav
+  class="bg-linear-to-r from-slate-50 to-slate-100 border-b border-slate-200 shadow-sm sticky top-0 z-99 backdrop-opacity-95 backdrop-blur-xs"
+>
+  <div class="mx-auto sm:px-2 w-full">
+    <div class="flex items-center justify-between h-12">
+      <!-- Start Slot -->
+      <div class="flex items-center gap-4">
+        <ng-content select="[slot='start']" />
+
+        <a [routerLink]="['/home']" class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 bg-linear-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md"
+          >
+            <img src="/icons/flag-sharp.svg" class="w-4 h-4" />
+          </div>
+          <span class="text-xl font-bold text-slate-800">How Many Flags</span>
+        </a>
+      </div>
+
+      <!-- Middle Slot -->
+      <div class="hidden md:flex items-center gap-6">
+        <ng-content select="[slot='middle']" />
+
+        @for (item of navItems(); track item.label) {
+        <a
+          [class.text-blue-600]="activeItem() === item.label"
+          [class.font-semibold]="activeItem() === item.label"
+          class="text-slate-600 hover:text-blue-600 transition-colors px-3 py-2 rounded-lg hover:bg-slate-200/50"
+          [routerLink]="item.url"
+        >
+          {{ item.label }}
+        </a>
+        }
+      </div>
+
+      <!-- End Slot -->
+      <div class="flex items-center gap-3">
+        <ng-content select="[slot='end']" />
+
+        <a href="https://github.com/Stefan-v-Oudenaarden" target="_blank">
+          <div
+            class="w-10 h-10 rounded-full flex items-center justify-center shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+          >
+            <img src="/avatars/SvO.png" class="w-10 h-10 rounded-full" /></div
+        ></a>
+      </div>
+    </div>
+  </div>
+</nav>
