@@ -1,7 +1,14 @@
 import { Component, computed, inject, input } from '@angular/core';
 
 import { AvatarService } from '../../services/avatar.service';
-import { totalPredictionScores } from '../../services/score-v1.service';
+import { racePredictionScores, totalPredictionScores } from '../../services/score-v1.service';
+
+export type scoreLine = {
+  name: string;
+  score: number;
+  place?: number;
+  difference?: number;
+};
 
 @Component({
   selector: 'app-scoreblock-hero-v1',
@@ -11,17 +18,33 @@ import { totalPredictionScores } from '../../services/score-v1.service';
 })
 export class ScoreblockHeroV1Component {
   public scores = input.required<totalPredictionScores>();
+  public lastRaceScores = input<racePredictionScores>();
   public selectedScore = input.required<
     'driverScore' | 'flagScore' | 'winnerScore' | 'dnfScore' | 'totalScore'
   >();
 
   public scoreLines = computed(() => {
-    let scoreLines = [];
+    let scoreLines: scoreLine[] = [];
+    let lastRaceScores = this.lastRaceScores();
 
     for (let name of Object.keys(this.scores())) {
       let scoreType = this.scores()[name];
       let scoreIndex = this.selectedScore() as keyof typeof scoreType;
-      scoreLines.push({ name: name, score: this.scores()[name][scoreIndex], place: 0 });
+
+      let diff: number | undefined = undefined;
+
+      if (lastRaceScores) {
+        let lastScoreType = lastRaceScores[name];
+        let lastScoreIndex = this.selectedScore() as keyof typeof lastScoreType;
+
+        diff = lastRaceScores[name][lastScoreIndex];
+      }
+
+      scoreLines.push({
+        name: name,
+        score: this.scores()[name][scoreIndex],
+        difference: diff,
+      });
     }
 
     scoreLines.sort((a, b) => {

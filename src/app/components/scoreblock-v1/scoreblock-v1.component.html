@@ -11,7 +11,7 @@
     <div
       class="flex items-center justify-between p-1 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors"
       [class]="
-        line.place
+        displayTop() && line.place
           ? 'bg-linear-to-r from-yellow-50 to-orange-50 shadow-md'
           : 'bg-gray-50 hover:bg-gray-100'
       "
@@ -32,7 +32,12 @@
         </div>
         <span class="font-medium text-gray-700">{{ line.name }}</span>
       </div>
-      <span class="text-2xl font-bold text-gray-800">{{ line.score }}</span>
+      <div class="text-2xl font-bold text-gray-800 items-center-safe flex">
+        @if(line.difference) {
+        <span class="text-sm font-bold text-green-600 pr-2">+{{ line.difference }}</span>
+        }
+        {{ line.score }}
+      </div>
     </div>
     }
   </div>

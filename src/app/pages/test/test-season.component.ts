@@ -9,7 +9,11 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
-import { FlagsDataServiceV1 } from '../../services/race-results-v1.service';
+import {
+  FlagsDataServiceV1,
+  RacePredictionsV1,
+  RaceResultV1,
+} from '../../services/race-results-v1.service';
 import { PredictionEditorComponent } from '../../components/prediction-editor/prediction-editor.component';
 import { ResultEditorComponent } from '../../components/result-editor/result-editor.component';
 import { TopNavComponent } from '../../components/top-nav/top-nav.component';
@@ -17,6 +21,7 @@ import { AvatarService } from '../../services/avatar.service';
 import { ScoreblockHeroV1Component } from '../../components/scoreblock-hero-v1/scoreblock-hero-v1.component';
 import { ScoreblockV1Component } from '../../components/scoreblock-v1/scoreblock-v1.component';
 import {
+  racePredictionScores,
   ScoreV1Service,
   seasonPredictionScores,
   totalPredictionScores,
@@ -53,6 +58,10 @@ export class TestSeasonComponent {
   public seasonScores = signal<seasonPredictionScores>({});
   public totalScores = signal<totalPredictionScores>({});
 
+  public lastRaceScores = signal<racePredictionScores>({});
+  public lastRacePrediction = signal<RacePredictionsV1>({});
+  public lastRaceResults = signal<RaceResultV1>({} as any);
+
   public dataLoaded = false;
 
   constructor() {
@@ -68,13 +77,20 @@ export class TestSeasonComponent {
     const races = data[this.selectedYear()].results;
     const keys = Object.keys(races);
 
+    let lastRaceId = races.length - 1;
+
     for (let key of keys) {
       let race = races[+key];
       raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
     }
 
     this.raceIds.set(raceIds);
+
+    this.lastRacePrediction.set(data[this.selectedYear()].predictions[lastRaceId]);
+    this.lastRaceResults.set(races[lastRaceId]);
+
     this.CalculateSeasonScores();
+    this.lastRaceScores.set(this.seasonScores()[lastRaceId]);
   }
 
   CalculateSeasonScores() {

@@ -36,6 +36,9 @@
       </div>
       <div class="text-right">
         <div class="text-4xl font-bold text-gray-800">{{ line.score }}</div>
+        @if(line.difference) {
+        <div class="text-base font-bold text-green-600">+{{ line.difference }}</div>
+        }
       </div>
     </div>
     }

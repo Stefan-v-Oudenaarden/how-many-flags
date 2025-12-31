@@ -59,7 +59,7 @@
     </hlm-dialog>
 
     <hlm-tabs tab="Standings" class="w-full">
-      <hlm-tabs-list aria-label="tabs example">
+      <hlm-tabs-list aria-label="Tabs">
         <button hlmTabsTrigger="Standings">Standings</button>
         <button hlmTabsTrigger="Last Race">Last Race</button>
         <button hlmTabsTrigger="Races">Races</button>
@@ -71,6 +71,7 @@
           <div class="space-y-4">
             <app-scoreblock-hero-v1
               [scores]="totalScores()"
+              [lastRaceScores]="lastRaceScores()"
               selectedScore="totalScore"
               displayName="Overall Leaderboard"
             ></app-scoreblock-hero-v1>
@@ -81,6 +82,7 @@
             <!-- Flags -->
             <app-scoreblock-v1
               [scores]="totalScores()"
+              [lastRaceScores]="lastRaceScores()"
               selectedScore="flagScore"
               displayName="Flags"
               displayIcon="/icons/flag-sharp.svg"
@@ -90,6 +92,7 @@
             <!-- Drivers -->
             <app-scoreblock-v1
               [scores]="totalScores()"
+              [lastRaceScores]="lastRaceScores()"
               selectedScore="driverScore"
               displayName="Drivers"
               displayIcon="/icons/people-sharp.svg"
@@ -99,6 +102,7 @@
             <!-- Winner -->
             <app-scoreblock-v1
               [scores]="totalScores()"
+              [lastRaceScores]="lastRaceScores()"
               selectedScore="winnerScore"
               displayName="Winner"
               displayIcon="/icons/car-sport-sharp.svg"
@@ -108,6 +112,7 @@
             <!-- DNF -->
             <app-scoreblock-v1
               [scores]="totalScores()"
+              [lastRaceScores]="lastRaceScores()"
               selectedScore="dnfScore"
               displayName="DNF"
               displayIcon="/icons/car-crash.svg"
@@ -117,25 +122,54 @@
         </div>
       </div>
       <div hlmTabsContent="Last Race">
-        <section hlmCard>
-          <div hlmCardHeader>
-            <h3 hlmCardTitle>Password</h3>
-            <p hlmCardDescription>bla bla bla</p>
-          </div>
-          <p hlmCardContent></p>
-          <div hlmCardFooter></div>
-        </section>
+        <div class="space-4 grid grid-cols-2 md:grid-cols-5 gap-4">
+          <app-scoreblock-v1
+            [scores]="lastRaceScores()"
+            [displayTop]="false"
+            selectedScore="totalScore"
+            displayName="Total"
+            displayIcon="/icons/trophy-sharp.svg"
+            displayIconStyle="bg-linear-to-r from-yellow-400 to-orange-500"
+          ></app-scoreblock-v1>
+
+          <app-scoreblock-v1
+            [scores]="lastRaceScores()"
+            [displayTop]="false"
+            selectedScore="flagScore"
+            displayName="Flags"
+            displayIcon="/icons/flag-sharp.svg"
+            displayIconStyle="bg-red-500"
+          ></app-scoreblock-v1>
+
+          <app-scoreblock-v1
+            [scores]="lastRaceScores()"
+            [displayTop]="false"
+            selectedScore="driverScore"
+            displayName="Drivers"
+            displayIcon="/icons/people-sharp.svg"
+            displayIconStyle="bg-blue-500"
+          ></app-scoreblock-v1>
+
+          <app-scoreblock-v1
+            [scores]="lastRaceScores()"
+            [displayTop]="false"
+            selectedScore="winnerScore"
+            displayName="Winner"
+            displayIcon="/icons/car-sport-sharp.svg"
+            displayIconStyle="bg-yellow-500"
+          ></app-scoreblock-v1>
+
+          <app-scoreblock-v1
+            [scores]="lastRaceScores()"
+            [displayTop]="false"
+            selectedScore="dnfScore"
+            displayName="DNF"
+            displayIcon="/icons/car-crash.svg"
+            displayIconStyle="bg-gray-500"
+          ></app-scoreblock-v1>
+        </div>
       </div>
-      <div hlmTabsContent="Races">
-        <section hlmCard>
-          <div hlmCardHeader>
-            <h3 hlmCardTitle>Races</h3>
-            <p hlmCardDescription>bla bla bla</p>
-          </div>
-          <p hlmCardContent></p>
-          <div hlmCardFooter></div>
-        </section>
-      </div>
+      <div hlmTabsContent="Races"></div>
     </hlm-tabs>
   </div>
 </div>

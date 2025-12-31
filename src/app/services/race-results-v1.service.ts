@@ -202,8 +202,6 @@ export class FlagsDataServiceV1 {
     };
 
     this.Datasets.set(dataSets);
-
-    console.log(this.Datasets());
   }
 
   ExportYearData(year: string): string {
@@ -212,7 +210,7 @@ export class FlagsDataServiceV1 {
       results: this.Datasets()[year].results,
     };
 
-    console.log('export', data);
+    console.info('export', data);
 
     return JSON.stringify(data, null, 2);
   }
