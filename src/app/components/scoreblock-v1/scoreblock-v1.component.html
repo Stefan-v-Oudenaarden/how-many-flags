@@ -1,0 +1,39 @@
+<div class="bg-white rounded-2xl shadow-lg p-4 hover:shadow-xl transition-shadow">
+  <div class="flex items-center gap-3 mb-4">
+    <div class="p-3 rounded-xl shadow-md" [class]="displayIconStyle()">
+      <img class="w-4 h-4 invert" [src]="displayIcon()" />
+    </div>
+    <h2 class="text-2xl font-bold text-gray-800">{{ displayName() }}</h2>
+  </div>
+  <div class="space-y-1">
+    @for (line of scoreLines(); track line.name; let i = $index) {
+
+    <div
+      class="flex items-center justify-between p-1 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors"
+      [class]="
+        line.place
+          ? 'bg-linear-to-r from-yellow-50 to-orange-50 shadow-md'
+          : 'bg-gray-50 hover:bg-gray-100'
+      "
+    >
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <div>
+            <img [src]="avatars.Avatars.get(line.name)?.url" class="w-10 h-10 rounded-xl" />
+            @if (displayAwards() && line.place === 1) {
+            <div
+              class="absolute -top-3 -right-4 bg-transparent text-white w-8 h-8 rounded-full flex items-center justify-center text-xl font-bold rotate-45"
+            >
+              👑
+            </div>
+
+            }
+          </div>
+        </div>
+        <span class="font-medium text-gray-700">{{ line.name }}</span>
+      </div>
+      <span class="text-2xl font-bold text-gray-800">{{ line.score }}</span>
+    </div>
+    }
+  </div>
+</div>

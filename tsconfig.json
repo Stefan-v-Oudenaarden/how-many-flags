@@ -33,6 +33,15 @@
       ],
       "@spartan-ng/helm/textarea": [
         "./libs/ui/textarea/src/index.ts"
+      ],
+      "@spartan-ng/helm/tabs": [
+        "./libs/ui/tabs/src/index.ts"
+      ],
+      "@spartan-ng/helm/button": [
+        "./libs/ui/button/src/index.ts"
+      ],
+      "@spartan-ng/helm/card": [
+        "./libs/ui/card/src/index.ts"
       ]
     }
   },

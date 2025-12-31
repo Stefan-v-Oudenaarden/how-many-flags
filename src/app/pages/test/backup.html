@@ -1,0 +1,50 @@
+<div class="container mx-auto p-6 max-w-6xl">
+  <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-100 border-b border-gray-200">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Race</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Team</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for(result of this.raceDataService.Datasets()[selectedYear()].results; track result.id) {
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4">
+              {{ result.race }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.flags }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.drivers }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.winner }}
+            </td>
+            <td class="px-6 py-4">
+              {{ result.team }}
+            </td>
+            <td class="px-6 py-4">
+              @if(result.dnfs.length < 4 && result.dnfs.length > 0 ) {
+              <p class="max-w-40 text-ellipsis overflow-hidden">
+                {{ result.dnfs }}
+              </p>
+              }@else {
+              <p class="max-w-40 text-ellipsis overflow-hidden">
+                {{ result.dnfs.length }}
+              </p>
+              }
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

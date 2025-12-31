@@ -58,56 +58,84 @@
       </hlm-dialog-content>
     </hlm-dialog>
 
-    <div class="container mx-auto p-6 max-w-6xl">
-      <div class="bg-white rounded-lg shadow overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-gray-100 border-b border-gray-200">
-              <tr>
-                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Race</th>
-                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
-                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
-                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
-                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Team</th>
-                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-              @for(result of this.raceDataService.Datasets()[selectedYear()].results; track
-              result.id) {
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="px-6 py-4">
-                  {{ result.race }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ result.flags }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ result.drivers }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ result.winner }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ result.team }}
-                </td>
-                <td class="px-6 py-4">
-                  @if(result.dnfs.length < 4 && result.dnfs.length > 0 ) {
-                  <p class="max-w-40 text-ellipsis overflow-hidden">
-                    {{ result.dnfs }}
-                  </p>
-                  }@else {
-                  <p class="max-w-40 text-ellipsis overflow-hidden">
-                    {{ result.dnfs.length }}
-                  </p>
-                  }
-                </td>
-              </tr>
-              }
-            </tbody>
-          </table>
+    <hlm-tabs tab="Standings" class="w-full">
+      <hlm-tabs-list aria-label="tabs example">
+        <button hlmTabsTrigger="Standings">Standings</button>
+        <button hlmTabsTrigger="Last Race">Last Race</button>
+        <button hlmTabsTrigger="Races">Races</button>
+      </hlm-tabs-list>
+      <div hlmTabsContent="Standings">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <!-- Left Column - Overall Leaderboard -->
+
+          <div class="space-y-4">
+            <app-scoreblock-hero-v1
+              [scores]="totalScores()"
+              selectedScore="totalScore"
+              displayName="Overall Leaderboard"
+            ></app-scoreblock-hero-v1>
+          </div>
+
+          <!-- Right Column - Categories -->
+          <div class="space-4 grid grid-cols-2 gap-4">
+            <!-- Flags -->
+            <app-scoreblock-v1
+              [scores]="totalScores()"
+              selectedScore="flagScore"
+              displayName="Flags"
+              displayIcon="/icons/flag-sharp.svg"
+              displayIconStyle="bg-red-500"
+            ></app-scoreblock-v1>
+
+            <!-- Drivers -->
+            <app-scoreblock-v1
+              [scores]="totalScores()"
+              selectedScore="driverScore"
+              displayName="Drivers"
+              displayIcon="/icons/people-sharp.svg"
+              displayIconStyle="bg-blue-500"
+            ></app-scoreblock-v1>
+
+            <!-- Winner -->
+            <app-scoreblock-v1
+              [scores]="totalScores()"
+              selectedScore="winnerScore"
+              displayName="Winner"
+              displayIcon="/icons/car-sport-sharp.svg"
+              displayIconStyle="bg-yellow-500"
+            ></app-scoreblock-v1>
+
+            <!-- DNF -->
+            <app-scoreblock-v1
+              [scores]="totalScores()"
+              selectedScore="dnfScore"
+              displayName="DNF"
+              displayIcon="/icons/car-crash.svg"
+              displayIconStyle="bg-gray-500"
+            ></app-scoreblock-v1>
+          </div>
         </div>
       </div>
-    </div>
+      <div hlmTabsContent="Last Race">
+        <section hlmCard>
+          <div hlmCardHeader>
+            <h3 hlmCardTitle>Password</h3>
+            <p hlmCardDescription>bla bla bla</p>
+          </div>
+          <p hlmCardContent></p>
+          <div hlmCardFooter></div>
+        </section>
+      </div>
+      <div hlmTabsContent="Races">
+        <section hlmCard>
+          <div hlmCardHeader>
+            <h3 hlmCardTitle>Races</h3>
+            <p hlmCardDescription>bla bla bla</p>
+          </div>
+          <p hlmCardContent></p>
+          <div hlmCardFooter></div>
+        </section>
+      </div>
+    </hlm-tabs>
   </div>
 </div>
