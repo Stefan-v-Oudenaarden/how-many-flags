@@ -14,6 +14,7 @@ export class RaceViewV1Component {
   public results = input.required<RaceResultV1>();
   public predictions = input.required<RacePredictionsV1>();
   public participants = input.required<string[]>();
+  public displaySize = input<'small' | 'large'>('large');
 
   listToHtmlString(items: string[]): string {
     if (items.length === 0) {

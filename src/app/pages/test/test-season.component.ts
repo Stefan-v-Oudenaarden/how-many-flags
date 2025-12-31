@@ -2,12 +2,15 @@ import { Component, computed, effect, inject, output, signal } from '@angular/co
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { BrnDialogImports } from '@spartan-ng/brain/dialog';
+import { BrnDialogImports, BrnDialogState } from '@spartan-ng/brain/dialog';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import {
   FlagsDataServiceV1,
@@ -27,6 +30,7 @@ import {
   totalPredictionScores,
 } from '../../services/score-v1.service';
 import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
+import { lucideChevronRight, lucideCircleCheckBig, lucideHourglass } from '@ng-icons/lucide';
 
 @Component({
   selector: 'app-season-2025',
@@ -35,6 +39,7 @@ import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.
     FormsModule,
     PredictionEditorComponent,
     ResultEditorComponent,
+    HlmCardImports,
     BrnDialogImports,
     HlmDialogImports,
     BrnSelectImports,
@@ -45,7 +50,10 @@ import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.
     ScoreblockHeroV1Component,
     ScoreblockV1Component,
     RaceViewV1Component,
+    HlmIcon,
+    NgIcon,
   ],
+  providers: [provideIcons({ lucideCircleCheckBig, lucideHourglass })],
   templateUrl: './test-season.component.html',
   styleUrl: './test-season.component.css',
 })
@@ -59,11 +67,17 @@ export class TestSeasonComponent {
   public raceIds = signal<{ name: string; id: string }[]>([{ name: 'placeholder', id: '0' }]);
   public seasonScores = signal<seasonPredictionScores>({});
   public totalScores = signal<totalPredictionScores>({});
+  public raceDisplayModalIsOpen = signal<BrnDialogState>('closed');
 
   public lastRaceScores = signal<racePredictionScores>({});
   public lastRaceResults = signal<RaceResultV1>({} as any);
   public lastRacePrediction = signal<RacePredictionsV1>({});
   public lastRaceParticipants = signal<string[]>([]);
+
+  public displayedRaceScores = signal<racePredictionScores>({});
+  public displayedRaceResults = signal<RaceResultV1>({} as any);
+  public displayedRacePrediction = signal<RacePredictionsV1>({});
+  public displayedRaceParticipants = signal<string[]>([]);
 
   public dataLoaded = false;
 
@@ -89,6 +103,7 @@ export class TestSeasonComponent {
         completedRaceKeys.push(race.id);
       }
     }
+    this.CalculateSeasonScores();
 
     const lastRaceId = completedRaceKeys[completedRaceKeys.length - 1];
 
@@ -98,7 +113,6 @@ export class TestSeasonComponent {
     this.lastRaceParticipants.set(Object.keys(this.lastRacePrediction()));
     this.lastRaceResults.set(races[lastRaceId]);
 
-    this.CalculateSeasonScores();
     this.lastRaceScores.set(this.seasonScores()[lastRaceId]);
   }
 
@@ -149,5 +163,25 @@ export class TestSeasonComponent {
     }
 
     return items.join(', ');
+  }
+
+  openRaceModalToRace(race: string) {
+    if (!this.raceDataService.Datasets()[this.selectedYear()].results[+race].finished) {
+      return;
+    }
+
+    this.displayedRaceResults.set(
+      this.raceDataService.Datasets()[this.selectedYear()].results[+race]
+    );
+
+    this.displayedRaceScores.set(this.seasonScores()[race]);
+
+    this.displayedRacePrediction.set(
+      this.raceDataService.Datasets()[this.selectedYear()].predictions[+race]
+    );
+
+    this.displayedRaceParticipants.set(Object.keys(this.displayedRacePrediction()));
+
+    this.raceDisplayModalIsOpen.set('open');
   }
 }

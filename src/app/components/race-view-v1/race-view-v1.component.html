@@ -89,7 +89,7 @@
       <tbody class="divide-y divide-gray-200 border-b">
         @for(participant of participants(); track participant) {
         <tr class="hover:bg-gray-50 transition-colors">
-          <td class="px-6 py-4 font-medium text-gray-900">
+          <td class="px-6 py-4 font-medium text-gray-900 truncate max-w-48">
             {{ participant }}
           </td>
           <td class="px-3 py-2">
@@ -107,7 +107,7 @@
               {{ predictions()[participant].winner }}
             </div>
           </td>
-          <td class="px-3 py-2">
+          <td class="px-3 py-2 truncate">
             <div>
               {{ predictions()[participant].dnf }}
             </div>
@@ -120,10 +120,11 @@
 </div>
 
 <!-- Scores-->
-<div class="space-4 grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="space-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
   <app-scoreblock-v1
     [scores]="scores()"
     [displayTop]="false"
+    [displaySize]="displaySize()"
     selectedScore="totalScore"
     displayName="Total"
     displayIcon="/icons/trophy-sharp.svg"
@@ -133,6 +134,7 @@
   <app-scoreblock-v1
     [scores]="scores()"
     [displayTop]="false"
+    [displaySize]="displaySize()"
     selectedScore="flagScore"
     displayName="Flags"
     displayIcon="/icons/flag-sharp.svg"
@@ -142,6 +144,7 @@
   <app-scoreblock-v1
     [scores]="scores()"
     [displayTop]="false"
+    [displaySize]="displaySize()"
     selectedScore="driverScore"
     displayName="Drivers"
     displayIcon="/icons/people-sharp.svg"
@@ -151,6 +154,7 @@
   <app-scoreblock-v1
     [scores]="scores()"
     [displayTop]="false"
+    [displaySize]="displaySize()"
     selectedScore="winnerScore"
     displayName="Winner"
     displayIcon="/icons/car-sport-sharp.svg"
@@ -160,6 +164,7 @@
   <app-scoreblock-v1
     [scores]="scores()"
     [displayTop]="false"
+    [displaySize]="displaySize()"
     selectedScore="dnfScore"
     displayName="DNF"
     displayIcon="/icons/car-crash.svg"

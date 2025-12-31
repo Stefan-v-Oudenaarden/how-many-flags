@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { TestSeasonComponent } from './pages/test/test-season.component';
 
 export const routes: Routes = [
-  { path: 'home', title: 'How Many Flags', component: HomeComponent },
+  { path: 'home', title: 'How Many Flags', component: TestSeasonComponent },
   {
     path: 'test',
     title: 'Test Season',
