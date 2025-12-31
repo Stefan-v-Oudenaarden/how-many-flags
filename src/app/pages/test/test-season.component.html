@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50">
-  <app-top-nav activeItem="Test"></app-top-nav>
+  <app-top-nav activeItem="Test Season"></app-top-nav>
   <div class="max-w-450 mx-auto p-4">
     <!-- Edit Modal -->
     <hlm-dialog>
@@ -58,13 +58,13 @@
       </hlm-dialog-content>
     </hlm-dialog>
 
-    <hlm-tabs tab="Last Race" class="w-full">
+    <hlm-tabs tab="Standings" class="w-full">
       <hlm-tabs-list aria-label="Tabs">
         <button hlmTabsTrigger="Standings">Standings</button>
         <button hlmTabsTrigger="Last Race">Last Race</button>
         <button hlmTabsTrigger="Races">Races</button>
       </hlm-tabs-list>
-      <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ lastRaceResults().race }}</h1>
+
       <div hlmTabsContent="Standings">
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
           <!-- Left Column - Overall Leaderboard -->
@@ -123,6 +123,7 @@
         </div>
       </div>
       <div hlmTabsContent="Last Race">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ lastRaceResults().race }}</h1>
         <app-race-view-v1
           [scores]="lastRaceScores()"
           [results]="lastRaceResults()"
@@ -131,7 +132,91 @@
         >
         </app-race-view-v1>
       </div>
-      <div hlmTabsContent="Races"></div>
+      <div hlmTabsContent="Races">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 space-4 gap-4">
+          @for(race of raceIds(); track race.id) {
+          <section hlmCard class="w-full max-w-sm" (click)="openRaceModalToRace(race.id)">
+            <div hlmCardHeader>
+              <h3 hlmCardTitle>
+                {{ raceDataService.Datasets()[selectedYear()].results[+race.id].race }}
+              </h3>
+              <div hlmCardAction>
+                @if(raceDataService.Datasets()[selectedYear()].results[+race.id].finished) {
+                <ng-icon
+                  hlm
+                  size="sm"
+                  name="lucideCircleCheckBig"
+                  color="oklch(62.7% 0.194 149.214)"
+                />
+                }
+              </div>
+            </div>
+            <div hlmCardContent class="h-full">
+              @if(raceDataService.Datasets()[selectedYear()].results[+race.id].finished) {
+              <table>
+                <tr>
+                  <td class="px-3 py-2 font-semibold">Flags</td>
+                  <td class="px-3 py-2">
+                    {{ raceDataService.Datasets()[selectedYear()].results[+race.id].flags }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-3 py-2 font-semibold">Drivers</td>
+                  <td class="px-3 py-2">
+                    {{ raceDataService.Datasets()[selectedYear()].results[+race.id].drivers }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-3 py-2 font-semibold">Winner</td>
+                  <td class="px-3 py-2">
+                    {{ raceDataService.Datasets()[selectedYear()].results[+race.id].winner }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-3 py-2 font-semibold">DNF</td>
+                  <td class="px-3 py-2">
+                    {{ raceDataService.Datasets()[selectedYear()].results[+race.id].dnfs.length }}
+                  </td>
+                </tr>
+              </table>
+              }@else {
+              <div class="flex justify-center h-full items-center-safe">
+                <ng-icon
+                  class="mb-10"
+                  hlm
+                  size="xl"
+                  name="lucideHourglass"
+                  color="oklch(0.928 0.006 264.531)"
+                />
+              </div>
+              }
+            </div>
+          </section>
+          }
+        </div>
+      </div>
     </hlm-tabs>
   </div>
 </div>
+
+<hlm-dialog [state]="raceDisplayModalIsOpen()" (closed)="raceDisplayModalIsOpen.set('closed')">
+  <hlm-dialog-content
+    *brnDialogContent="let ctx"
+    class="overflow-y-auto overflow-x-hidden min-h-[70dvh] max-h-dvh"
+  >
+    <hlm-dialog-header>
+      <h3 class="text-4xl bold">
+        {{ displayedRaceResults().race }}
+      </h3>
+    </hlm-dialog-header>
+    <app-race-view-v1
+      [scores]="displayedRaceScores()"
+      [results]="displayedRaceResults()"
+      [predictions]="displayedRacePrediction()"
+      [participants]="displayedRaceParticipants()"
+      [displaySize]="'small'"
+      ;
+    >
+    </app-race-view-v1>
+  </hlm-dialog-content>
+</hlm-dialog>

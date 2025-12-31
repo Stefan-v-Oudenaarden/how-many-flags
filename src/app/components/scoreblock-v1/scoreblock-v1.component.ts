@@ -19,6 +19,7 @@ export class ScoreblockV1Component {
   public displayName = input<string>('');
   public displayIcon = input<string>('/icons/trophy-sharp.svg');
   public displayIconStyle = input<string>('bg-linear-to-r from-yellow-400 to-orange-500');
+  public displaySize = input<'small' | 'large'>('large');
 
   public selectedScore = input.required<
     'driverScore' | 'flagScore' | 'winnerScore' | 'dnfScore' | 'totalScore'

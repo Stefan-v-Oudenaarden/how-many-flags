@@ -13,8 +13,8 @@
         </thead>
         <tbody class="divide-y divide-gray-200 border-b">
           @for (participant of participants; track participant) {
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4 font-medium text-gray-900">
+          <tr class="hover:bg-gray-50 transition-colors truncate">
+            <td class="px-6 py-4 font-medium text-gray-900 truncate max-w-48">
               {{ participant }}
             </td>
             <td class="px-3 py-2">
@@ -75,7 +75,7 @@
         </tbody>
       </table>
 
-      <div class="flex px-3 py-2 justify-around">
+      <div class="flex px-3 py-2 justify-around truncate">
         <input
           [(ngModel)]="newParticipantName"
           placeholder="New Participant..."
