@@ -10,6 +10,7 @@ import { FlagsDataServiceV1, SeasonPredictionsV1 } from '../../services/race-res
 @Component({
   selector: 'app-prediction-editor',
   imports: [CommonModule, FormsModule, BrnSelectImports, HlmSelectImports],
+
   templateUrl: './prediction-editor.component.html',
   styleUrl: './prediction-editor.component.css',
 })
@@ -31,8 +32,17 @@ export class PredictionEditorComponent {
     effect(() => {
       let dataSet = this.raceDataService.Datasets()[this.year()];
       this.participants = new Set();
+
       if (Object.keys(dataSet).length > 0) {
         this.raceData = dataSet.predictions;
+
+        console.log(dataSet.predictions[this.raceID()]);
+        if (
+          !dataSet.predictions[this.raceID()] ||
+          Object.keys(dataSet.predictions[this.raceID()]).length === 0
+        ) {
+          return;
+        }
 
         const predictionParticpants = Object.keys(dataSet.predictions[this.raceID()]);
         for (const p of predictionParticpants) {

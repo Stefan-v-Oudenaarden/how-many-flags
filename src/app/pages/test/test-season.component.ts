@@ -7,6 +7,7 @@ import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -30,7 +31,13 @@ import {
   totalPredictionScores,
 } from '../../services/score-v1.service';
 import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
-import { lucideChevronRight, lucideCircleCheckBig, lucideHourglass } from '@ng-icons/lucide';
+import {
+  lucideAlertTriangle,
+  lucideChevronRight,
+  lucideCircleCheckBig,
+  lucideHourglass,
+  lucidePlusCircle,
+} from '@ng-icons/lucide';
 
 @Component({
   selector: 'app-season-2025',
@@ -52,8 +59,11 @@ import { lucideChevronRight, lucideCircleCheckBig, lucideHourglass } from '@ng-i
     RaceViewV1Component,
     HlmIcon,
     NgIcon,
+    HlmEmptyImports,
   ],
-  providers: [provideIcons({ lucideCircleCheckBig, lucideHourglass })],
+  providers: [
+    provideIcons({ lucideCircleCheckBig, lucideHourglass, lucideAlertTriangle, lucidePlusCircle }),
+  ],
   templateUrl: './test-season.component.html',
   styleUrl: './test-season.component.css',
 })
@@ -64,7 +74,7 @@ export class TestSeasonComponent {
 
   public selectedRaceId = signal<string>('0');
   public selectedYear = signal<string>('2025');
-  public raceIds = signal<{ name: string; id: string }[]>([{ name: 'placeholder', id: '0' }]);
+  public raceIds = signal<{ name: string; id: string }[]>([]);
   public seasonScores = signal<seasonPredictionScores>({});
   public totalScores = signal<totalPredictionScores>({});
   public raceDisplayModalIsOpen = signal<BrnDialogState>('closed');
@@ -91,6 +101,7 @@ export class TestSeasonComponent {
     let raceIds: { name: string; id: string }[] = [];
 
     const data = this.raceDataService.Datasets();
+
     const races = data[this.selectedYear()].results;
     const keys = Object.keys(races);
     let completedRaceKeys: number[] = [];
@@ -103,11 +114,25 @@ export class TestSeasonComponent {
         completedRaceKeys.push(race.id);
       }
     }
+
+    console.log;
+
+    if (
+      Object.keys(data[this.selectedYear()].results).length === 0 ||
+      Object.keys(data[this.selectedYear()].predictions).length === 0
+    ) {
+      //No data to work with.
+      return;
+    }
+
     this.CalculateSeasonScores();
+    this.raceIds.set(raceIds);
+
+    if (completedRaceKeys.length === 0) {
+      return;
+    }
 
     const lastRaceId = completedRaceKeys[completedRaceKeys.length - 1];
-
-    this.raceIds.set(raceIds);
 
     this.lastRacePrediction.set(data[this.selectedYear()].predictions[lastRaceId]);
     this.lastRaceParticipants.set(Object.keys(this.lastRacePrediction()));
@@ -151,10 +176,13 @@ export class TestSeasonComponent {
 
   AddRaceToSeason() {
     this.raceDataService.AddRaceToYear(this.selectedYear());
+
     this.UpdateData();
 
-    const newRaceId = this.raceIds()[this.raceIds().length - 1];
+    const newRaceId = this.raceIds()[this.raceIds().length - 1] || 0;
     this.selectedRaceId.set(newRaceId.id);
+
+    console.log(this.selectedRaceId());
   }
 
   listToHtmlString(items: string[]): string {

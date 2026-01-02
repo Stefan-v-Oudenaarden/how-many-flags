@@ -2,6 +2,10 @@ import { Component, computed, inject, input } from '@angular/core';
 
 import { AvatarService } from '../../services/avatar.service';
 import { racePredictionScores, totalPredictionScores } from '../../services/score-v1.service';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { HlmEmptyImports } from '@spartan-ng/helm/empty';
+import { lucideAlertTriangle } from '@ng-icons/lucide';
 
 export type scoreLine = {
   name: string;
@@ -12,7 +16,8 @@ export type scoreLine = {
 
 @Component({
   selector: 'app-scoreblock-hero-v1',
-  imports: [],
+  imports: [HlmIcon, NgIcon, HlmEmptyImports],
+  providers: [provideIcons({ lucideAlertTriangle })],
   templateUrl: './scoreblock-hero-v1.component.html',
   styleUrl: './scoreblock-hero-v1.component.css',
 })
@@ -37,7 +42,9 @@ export class ScoreblockHeroV1Component {
         let lastScoreType = lastRaceScores[name];
         let lastScoreIndex = this.selectedScore() as keyof typeof lastScoreType;
 
-        diff = lastRaceScores[name][lastScoreIndex];
+        if (lastRaceScores[name] && lastRaceScores[name][lastScoreIndex]) {
+          diff = lastRaceScores[name][lastScoreIndex];
+        }
       }
 
       scoreLines.push({

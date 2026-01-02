@@ -93,7 +93,7 @@ export class FlagsDataServiceV1 {
       },
     });
 
-    this.http.get<YearDataV1>('/data/2025/data.json').subscribe((data) => {
+    this.http.get<YearDataV1>('/data/2026/data.json').subscribe((data) => {
       let datasets = this.Datasets();
       datasets['2025'].predictions = data.predictions;
       datasets['2025'].results = data.results;
@@ -101,7 +101,7 @@ export class FlagsDataServiceV1 {
       this.Datasets.set(datasets);
     });
 
-    this.http.get<DriversTableV1>('/data/2025/drivers.json').subscribe((driversWithTeams) => {
+    this.http.get<DriversTableV1>('/data/2026/drivers.json').subscribe((driversWithTeams) => {
       let datasets = this.Datasets();
       datasets['2025'].driversWithTeams = driversWithTeams;
 
@@ -119,7 +119,7 @@ export class FlagsDataServiceV1 {
       datasets['2025'].drivers = sortedDrivers;
       datasets['2025'].teams = [...teams].sort();
 
-      this.Datasets.set(datasets);
+      this.Datasets.set({ ...datasets });
     });
 
     this.http
@@ -127,7 +127,7 @@ export class FlagsDataServiceV1 {
       .subscribe((overrides) => {
         let datasets = this.Datasets();
         datasets[2025].driverOverrides = overrides;
-        this.Datasets.set(datasets);
+        this.Datasets.set({ ...datasets });
       });
   }
 
@@ -176,6 +176,8 @@ export class FlagsDataServiceV1 {
       }
     }
 
+    participansSet.add('Pidgeons');
+
     let predictions: RacePredictionsV1 = {};
 
     for (const p of participansSet) {
@@ -190,7 +192,7 @@ export class FlagsDataServiceV1 {
     data.results.push(raceResult);
     data.predictions[raceId.toString()] = predictions;
 
-    this.Datasets.set(this.Datasets());
+    this.Datasets.set({ ...this.Datasets() });
   }
 
   AddParticipantToPredictions(year: string, race: string, name: string) {
@@ -201,7 +203,7 @@ export class FlagsDataServiceV1 {
       winner: '',
     };
 
-    this.Datasets.set(dataSets);
+    this.Datasets.set({ ...dataSets });
   }
 
   ExportYearData(year: string): string {
