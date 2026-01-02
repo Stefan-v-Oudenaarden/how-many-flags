@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { BrnDialogImports, BrnDialogState } from '@spartan-ng/brain/dialog';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
@@ -10,8 +11,14 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmSkeletonImports } from '@spartan-ng/helm/skeleton';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import {
+  lucideAlertTriangle,
+  lucideCircleCheckBig,
+  lucideHourglass,
+  lucidePlusCircle,
+} from '@ng-icons/lucide';
 
 import {
   FlagsDataServiceV1,
@@ -31,13 +38,6 @@ import {
   totalPredictionScores,
 } from '../../services/score-v1.service';
 import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
-import {
-  lucideAlertTriangle,
-  lucideChevronRight,
-  lucideCircleCheckBig,
-  lucideHourglass,
-  lucidePlusCircle,
-} from '@ng-icons/lucide';
 
 @Component({
   selector: 'app-season-2025',
@@ -60,6 +60,7 @@ import {
     HlmIcon,
     NgIcon,
     HlmEmptyImports,
+    HlmSkeletonImports,
   ],
   providers: [
     provideIcons({ lucideCircleCheckBig, lucideHourglass, lucideAlertTriangle, lucidePlusCircle }),
@@ -115,8 +116,6 @@ export class TestSeasonComponent {
       }
     }
 
-    console.log;
-
     if (
       Object.keys(data[this.selectedYear()].results).length === 0 ||
       Object.keys(data[this.selectedYear()].predictions).length === 0
@@ -159,18 +158,14 @@ export class TestSeasonComponent {
   ExportSeasonData() {
     const seasonData = this.raceDataService.ExportYearData(this.selectedYear());
 
-    // Create a Blob from the string
     const blob = new Blob([seasonData], { type: 'application/json' });
 
-    // Create a temporary anchor element
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = 'data.json';
 
-    // Trigger the download
     link.click();
 
-    // Clean up the URL object
     URL.revokeObjectURL(link.href);
   }
 
@@ -181,8 +176,6 @@ export class TestSeasonComponent {
 
     const newRaceId = this.raceIds()[this.raceIds().length - 1] || 0;
     this.selectedRaceId.set(newRaceId.id);
-
-    console.log(this.selectedRaceId());
   }
 
   listToHtmlString(items: string[]): string {

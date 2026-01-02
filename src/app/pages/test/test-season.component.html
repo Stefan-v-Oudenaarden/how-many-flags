@@ -58,7 +58,7 @@
       </hlm-dialog-content>
     </hlm-dialog>
 
-    <hlm-tabs tab="Standings" class="w-full">
+    <hlm-tabs tab="Last Race" class="w-full">
       <hlm-tabs-list aria-label="Tabs">
         <button hlmTabsTrigger="Standings">Standings</button>
         <button hlmTabsTrigger="Last Race">Last Race</button>
@@ -68,7 +68,7 @@
       <div hlmTabsContent="Standings">
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
           <!-- Left Column - Overall Leaderboard -->
-
+          @if(raceDataService.DataLoaded()) {
           <div class="space-y-4">
             <app-scoreblock-hero-v1
               [scores]="totalScores()"
@@ -77,10 +77,56 @@
               displayName="Overall Leaderboard"
             ></app-scoreblock-hero-v1>
           </div>
+          }@else {
+          <div class="bg-white rounded-2xl shadow-2xl p-8 top-8">
+            <div class="flex items-center gap-3 mb-8">
+              <hlm-skeleton class="h-12 w-12 rounded-sm" />
+              <hlm-skeleton class="h-8 w-80 rounded-sm" />
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-16 w-full rounded-sm">
+                  <hlm-skeleton
+                    class="h-12 w-12 rounded-xl drop-shadow-2xl mt-2 ml-2 bg-gray-300"
+                  />
+                </hlm-skeleton>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-16 w-full rounded-sm">
+                  <hlm-skeleton
+                    class="h-12 w-12 rounded-xl drop-shadow-2xl mt-2 ml-2 bg-gray-300"
+                  />
+                </hlm-skeleton>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-16 w-full rounded-sm">
+                  <hlm-skeleton
+                    class="h-12 w-12 rounded-xl drop-shadow-2xl mt-2 ml-2 bg-gray-300"
+                  />
+                </hlm-skeleton>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-16 w-full rounded-sm">
+                  <hlm-skeleton
+                    class="h-12 w-12 rounded-xl drop-shadow-2xl mt-2 ml-2 bg-gray-300"
+                  />
+                </hlm-skeleton>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-16 w-full rounded-sm">
+                  <hlm-skeleton
+                    class="h-12 w-12 rounded-xl drop-shadow-2xl mt-2 ml-2 bg-gray-300"
+                  />
+                </hlm-skeleton>
+              </div>
+            </div>
+          </div>
+          }
 
           <!-- Right Column - Categories -->
           <div class="space-4 grid grid-cols-2 gap-4">
             <!-- Flags -->
+            @if(raceDataService.DataLoaded()) {
             <app-scoreblock-v1
               [scores]="totalScores()"
               [lastRaceScores]="lastRaceScores()"
@@ -89,8 +135,62 @@
               displayIcon="/icons/flag-sharp.svg"
               displayIconStyle="bg-red-500"
             ></app-scoreblock-v1>
+            }@else {
+            <div class="bg-white rounded-2xl shadow-2xl p-2 top-2">
+              <div class="flex items-center gap-2 mb-2 ml-2">
+                <hlm-skeleton class="h-10 w-10 rounded-sm" />
+                <hlm-skeleton class="h-8 w-80 rounded-sm" />
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+            </div>
+            }
 
             <!-- Drivers -->
+            @if(raceDataService.DataLoaded()) {
             <app-scoreblock-v1
               [scores]="totalScores()"
               [lastRaceScores]="lastRaceScores()"
@@ -99,8 +199,62 @@
               displayIcon="/icons/people-sharp.svg"
               displayIconStyle="bg-blue-500"
             ></app-scoreblock-v1>
+            }@else {
+            <div class="bg-white rounded-2xl shadow-2xl p-2 top-2">
+              <div class="flex items-center gap-2 mb-2 ml-2">
+                <hlm-skeleton class="h-10 w-10 rounded-sm" />
+                <hlm-skeleton class="h-8 w-80 rounded-sm" />
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+            </div>
+            }
 
             <!-- Winner -->
+            @if(raceDataService.DataLoaded()) {
             <app-scoreblock-v1
               [scores]="totalScores()"
               [lastRaceScores]="lastRaceScores()"
@@ -109,8 +263,62 @@
               displayIcon="/icons/car-sport-sharp.svg"
               displayIconStyle="bg-yellow-500"
             ></app-scoreblock-v1>
+            }@else {
+            <div class="bg-white rounded-2xl shadow-2xl p-2 top-2">
+              <div class="flex items-center gap-2 mb-2 ml-2">
+                <hlm-skeleton class="h-10 w-10 rounded-sm" />
+                <hlm-skeleton class="h-8 w-80 rounded-sm" />
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+            </div>
+            }
 
             <!-- DNF -->
+            @if(raceDataService.DataLoaded()) {
             <app-scoreblock-v1
               [scores]="totalScores()"
               [lastRaceScores]="lastRaceScores()"
@@ -119,10 +327,64 @@
               displayIcon="/icons/car-crash.svg"
               displayIconStyle="bg-gray-500"
             ></app-scoreblock-v1>
+            }@else {
+            <div class="bg-white rounded-2xl shadow-2xl p-2 top-2">
+              <div class="flex items-center gap-2 mb-2 ml-2">
+                <hlm-skeleton class="h-10 w-10 rounded-sm" />
+                <hlm-skeleton class="h-8 w-80 rounded-sm" />
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+            </div>
+            }
           </div>
         </div>
       </div>
       <div hlmTabsContent="Last Race">
+        @if(raceDataService.DataLoaded()) {
         <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ lastRaceResults().race }}</h1>
         <app-race-view-v1
           [scores]="lastRaceScores()"
@@ -131,8 +393,169 @@
           [participants]="lastRaceParticipants()"
         >
         </app-race-view-v1>
+        }@else {
+        <div class="grid grid-cols-1 md:grid-cols-2 space-4 gap-4">
+          <!-- Results-->
+
+          <div class="space-4 gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
+            <div>
+              <h3
+                class="text-sm h-14 font-semibold text-gray-800 bg-gray-100 border-b border-gray-200 text-center py-3"
+              ></h3>
+            </div>
+            <div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-4 gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
+            <div>
+              <h3
+                class="text-sm h-14 font-semibold text-gray-800 bg-gray-100 border-b border-gray-200 text-center py-3"
+              ></h3>
+            </div>
+            <div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                  <hlm-skeleton class="h-10 w-full rounded-sm">
+                    <hlm-skeleton
+                      class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300"
+                    />
+                  </hlm-skeleton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          @for(repeat of [1,2,3,4,5]; track repeat) {
+          <div class="bg-white rounded-2xl shadow-2xl p-2 top-2 w-full">
+            <div class="flex items-center gap-2 mb-2 ml-2">
+              <hlm-skeleton class="h-10 w-10 rounded-sm" />
+              <hlm-skeleton class="h-8 w-60 rounded-sm" />
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-10 w-80 rounded-sm">
+                  <hlm-skeleton class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300" />
+                </hlm-skeleton>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-10 w-full rounded-sm">
+                  <hlm-skeleton class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300" />
+                </hlm-skeleton>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-10 w-full rounded-sm">
+                  <hlm-skeleton class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300" />
+                </hlm-skeleton>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-10 w-full rounded-sm">
+                  <hlm-skeleton class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300" />
+                </hlm-skeleton>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between p-2 rounded-xl transition-all">
+                <hlm-skeleton class="h-10 w-full rounded-sm">
+                  <hlm-skeleton class="h-8 w-8 rounded-xl drop-shadow-2xl mt-1 ml-1 bg-gray-300" />
+                </hlm-skeleton>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+        }
       </div>
       <div hlmTabsContent="Races">
+        @if(raceDataService.DataLoaded()) {
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 space-4 gap-4">
           @for(race of raceIds(); track race.id) {
           <section hlmCard class="w-full max-w-sm" (click)="openRaceModalToRace(race.id)">
@@ -207,6 +630,23 @@
           </div>
           }
         </div>
+        }@else {
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 space-4 gap-4">
+          @for(race of [0,1,2,3,4,5,6,7,8,9,10,11]; track race) {
+          <section hlmCard class="w-full max-w-sm px-4">
+            <div class="flex flex-col space-y-3">
+              <div class="space-y-2">
+                <hlm-skeleton class="h-4 w-50" />
+                <hlm-skeleton class="h-4 w-35" />
+                <hlm-skeleton class="h-4 w-50" />
+                <hlm-skeleton class="h-4 w-45" />
+              </div>
+            </div>
+          </section>
+          }
+        </div>
+
+        }
       </div>
     </hlm-tabs>
   </div>

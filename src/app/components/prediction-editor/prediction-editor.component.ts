@@ -36,7 +36,6 @@ export class PredictionEditorComponent {
       if (Object.keys(dataSet).length > 0) {
         this.raceData = dataSet.predictions;
 
-        console.log(dataSet.predictions[this.raceID()]);
         if (
           !dataSet.predictions[this.raceID()] ||
           Object.keys(dataSet.predictions[this.raceID()]).length === 0

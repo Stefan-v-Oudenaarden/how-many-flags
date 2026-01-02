@@ -71,7 +71,11 @@ export class FlagsDataServiceV1 {
 
   public years: string[] = ['2025'];
 
-  Datasets = signal<DataSetsV1>({});
+  public Datasets = signal<DataSetsV1>({});
+  public DataLoaded = computed(() => {
+    return this.DatasetsLoaded() === 6;
+  });
+  private DatasetsLoaded = signal<number>(0);
 
   constructor() {
     this.Datasets.set({
@@ -93,42 +97,73 @@ export class FlagsDataServiceV1 {
       },
     });
 
-    this.http.get<YearDataV1>('/data/2026/data.json').subscribe((data) => {
-      let datasets = this.Datasets();
-      datasets['2025'].predictions = data.predictions;
-      datasets['2025'].results = data.results;
-
-      this.Datasets.set(datasets);
+    this.http.get<YearDataV1>('/data/2025/data.json').subscribe((data) => {
+      this.LoadYearData('2025', data);
+      this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
     });
 
-    this.http.get<DriversTableV1>('/data/2026/drivers.json').subscribe((driversWithTeams) => {
-      let datasets = this.Datasets();
-      datasets['2025'].driversWithTeams = driversWithTeams;
-
-      let drivers = new Set<string>();
-      let teams = new Set<string>();
-
-      for (let pair of driversWithTeams) {
-        drivers.add(pair.name);
-        teams.add(pair.team);
-      }
-
-      let sortedDrivers = [...drivers].sort();
-      sortedDrivers.push('Nobody');
-
-      datasets['2025'].drivers = sortedDrivers;
-      datasets['2025'].teams = [...teams].sort();
-
-      this.Datasets.set({ ...datasets });
+    this.http.get<DriversTableV1>('/data/2025/drivers.json').subscribe((driversWithTeams) => {
+      this.LoadDriversTable('2025', driversWithTeams);
+      this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
     });
 
     this.http
       .get<DriversTableOverridesV1>('/data/2025/driver-overrides.json')
       .subscribe((overrides) => {
-        let datasets = this.Datasets();
-        datasets[2025].driverOverrides = overrides;
-        this.Datasets.set({ ...datasets });
+        this.LoadDriversTableOverrides('2025', overrides);
+        this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
       });
+
+    this.http.get<YearDataV1>('/data/2026/data.json').subscribe((data) => {
+      this.LoadYearData('2026', data);
+      this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
+    });
+
+    this.http.get<DriversTableV1>('/data/2026/drivers.json').subscribe((driversWithTeams) => {
+      this.LoadDriversTable('2026', driversWithTeams);
+      this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
+    });
+    this.http
+      .get<DriversTableOverridesV1>('/data/2026/driver-overrides.json')
+      .subscribe((overrides) => {
+        this.LoadDriversTableOverrides('2026', overrides);
+        this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
+      });
+  }
+
+  LoadYearData(year: string, data: YearDataV1) {
+    let datasets = this.Datasets();
+    datasets[year].predictions = data.predictions;
+    datasets[year].results = data.results;
+
+    this.Datasets.set(datasets);
+  }
+
+  LoadDriversTable(year: string, driversWithTeams: DriversTableV1) {
+    let datasets = this.Datasets();
+    datasets[year].driversWithTeams = driversWithTeams;
+
+    let drivers = new Set<string>();
+    let teams = new Set<string>();
+
+    for (let pair of driversWithTeams) {
+      drivers.add(pair.name);
+      teams.add(pair.team);
+    }
+
+    let sortedDrivers = [...drivers].sort();
+    sortedDrivers.push('Nobody');
+
+    datasets[year].drivers = sortedDrivers;
+    datasets[year].teams = [...teams].sort();
+
+    this.Datasets.set({ ...datasets });
+  }
+
+  LoadDriversTableOverrides(year: string, overrides: DriversTableOverridesV1) {
+    let datasets = this.Datasets();
+    datasets[year].driverOverrides = overrides;
+    this.Datasets.set({ ...datasets });
   }
 
   DriverToTeam(year: string, id: number, driver: string): string {
