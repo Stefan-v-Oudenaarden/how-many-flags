@@ -10,6 +10,10 @@ export type seasonPredictionScores = {
   [key: string]: racePredictionScores;
 };
 
+export type seasonRaceRatings = {
+  [key: string]: number;
+};
+
 export type racePredictionScores = {
   [key: string]: predictionScores;
 };
@@ -35,6 +39,7 @@ export class ScoreV1Service {
   CalculateSeasonScores(races: SeasonResultV1, racePredictions: SeasonPredictionsV1, year: string) {
     var seasonScores: seasonPredictionScores = {};
     var totalScores: totalPredictionScores = {};
+    var seasonRatings: seasonRaceRatings = {};
 
     let participansSet: Set<string> = new Set();
 
@@ -60,6 +65,7 @@ export class ScoreV1Service {
         continue;
       }
 
+      var ratings: number[] = [];
       const predictions = racePredictions[race.id];
       const racePredictionsScores: racePredictionScores = {};
 
@@ -92,6 +98,10 @@ export class ScoreV1Service {
           dnfScore = this.CalculateDNFScore(race.id, race.dnfs, prediction.dnf, year);
         }
 
+        if (prediction.rating) {
+          ratings.push(prediction.rating);
+        }
+
         let totalScore = flagScore + driverScore + dnfScore + winnerScore;
 
         racePredictionsScores[participant] = {
@@ -109,10 +119,15 @@ export class ScoreV1Service {
         totalScores[participant].totalScore += totalScore;
       }
 
+      const ratingsCount = ratings.length;
+      const ratingsTotal = ratings.reduce((acc, current) => acc + current, 0);
+      var averageRating = ratingsTotal / ratingsCount;
+
+      seasonRatings[race.id] = averageRating;
       seasonScores[race.id] = racePredictionsScores;
     }
 
-    return { seasonScores, totalScores };
+    return { seasonScores, totalScores, seasonRatings };
   }
 
   CalculateFlagsScore(target: number, prediction: number): number {

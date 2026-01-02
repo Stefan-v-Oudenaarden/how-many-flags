@@ -35,6 +35,7 @@ export type RaceResultPredictionV1 = {
   drivers?: number;
   winner?: string;
   dnf?: string;
+  rating?: number;
 };
 
 export interface RacePredictionsV1 {

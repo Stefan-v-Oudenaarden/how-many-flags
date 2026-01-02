@@ -562,6 +562,23 @@
                     {{ raceDataService.Datasets()[selectedYear()].results[+race.id].dnfs.length }}
                   </td>
                 </tr>
+                @if(raceRatings()[race.id] && raceRatings()[race.id] > 0) {
+                <tr>
+                  <td class="px-3 py-2 font-semibold">Rating</td>
+                  <td
+                    class="px-3 py-2"
+                    [class]="{
+                      'text-red-500': raceRatings()[race.id] == minRaceRating(),
+                      'text-green-500': raceRatings()[race.id] == maxRaceRating(),
+                      'font-bold':
+                        raceRatings()[race.id] == maxRaceRating() ||
+                        raceRatings()[race.id] == minRaceRating()
+                    }"
+                  >
+                    {{ raceRatings()[race.id] }}
+                  </td>
+                </tr>
+                }
               </table>
               }@else {
               <div class="flex justify-center h-full items-center-safe">

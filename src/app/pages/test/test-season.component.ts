@@ -38,6 +38,7 @@ import {
   racePredictionScores,
   ScoreV1Service,
   seasonPredictionScores,
+  seasonRaceRatings,
   totalPredictionScores,
 } from '../../services/score-v1.service';
 
@@ -85,6 +86,9 @@ export class TestSeasonComponent {
   public raceIds = signal<{ name: string; id: string }[]>([]);
   public seasonScores = signal<seasonPredictionScores>({});
   public totalScores = signal<totalPredictionScores>({});
+  public raceRatings = signal<seasonRaceRatings>({});
+  public maxRaceRating = signal<number>(Number.MAX_VALUE);
+  public minRaceRating = signal<number>(Number.MIN_VALUE);
   public raceDisplayModalIsOpen = signal<BrnDialogState>('closed');
 
   public lastRaceScores = signal<racePredictionScores>({});
@@ -156,6 +160,23 @@ export class TestSeasonComponent {
 
     this.seasonScores.set(scores.seasonScores);
     this.totalScores.set(scores.totalScores);
+    this.raceRatings.set(scores.seasonRatings);
+
+    let allRatings: number[] = [];
+
+    for (const i in this.raceRatings()) {
+      const r = this.raceRatings()[i];
+      if (!Number.isNaN(r)) {
+        console.log(r);
+        allRatings.push(r);
+      }
+    }
+    allRatings.sort();
+
+    this.maxRaceRating.set(allRatings[allRatings.length - 1]);
+    this.minRaceRating.set(allRatings[0]);
+
+    console.log(allRatings, this.maxRaceRating(), this.minRaceRating());
   }
 
   listToHtmlString(items: string[]): string {
