@@ -200,6 +200,7 @@ export class TestSeasonComponent {
     this.dialogService.open(tpl, {
       width: '80vw',
       height: '85vh',
+      id: 'raceViewModal',
     });
   }
 }

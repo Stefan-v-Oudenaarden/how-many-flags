@@ -1,20 +1,21 @@
 <div class="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50">
-  <app-top-nav activeItem="Test Season"></app-top-nav>
-  <div class="max-w-450 mx-auto p-4">
+  <app-top-nav activeItem="Test Season">
     <button
+      slot="end"
       hlmBtn
       variant="outline"
-      class="fixed top-14 right-2 text-2xl cursor-pointer"
+      class="text-2xl cursor-pointer"
       (click)="openDataEditModal()"
     >
       <ng-icon hlmIcon size="sm" name="lucidePencilRuler" />
     </button>
-
+  </app-top-nav>
+  <div class="max-w-450 mx-auto p-4">
     <hlm-tabs tab="Last Race" class="w-full">
       <hlm-tabs-list aria-label="Tabs">
-        <button hlmTabsTrigger="Standings">Standings</button>
-        <button hlmTabsTrigger="Last Race">Last Race</button>
-        <button hlmTabsTrigger="Races">Races</button>
+        <button hlmTabsTrigger="Standings" class="cursor-pointer">Standings</button>
+        <button hlmTabsTrigger="Last Race" class="cursor-pointer">Last Race</button>
+        <button hlmTabsTrigger="Races" class="cursor-pointer">Races</button>
       </hlm-tabs-list>
 
       <div hlmTabsContent="Standings">
@@ -514,6 +515,10 @@
             hlmCard
             class="w-full max-w-sm"
             (click)="openRaceModalToRace(race.id, raceViewModal)"
+            [class]="{
+              'cursor-pointer':
+                raceDataService.Datasets()[selectedYear()].results[+race.id].finished
+            }"
           >
             <div hlmCardHeader>
               <h3 hlmCardTitle>
