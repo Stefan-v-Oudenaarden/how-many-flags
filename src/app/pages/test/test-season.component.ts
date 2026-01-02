@@ -1,51 +1,51 @@
-import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, effect, inject, signal, TemplateRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
-import { BrnDialogImports, BrnDialogState } from '@spartan-ng/brain/dialog';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmSkeletonImports } from '@spartan-ng/helm/skeleton';
-import { HlmIcon } from '@spartan-ng/helm/icon';
 import {
   lucideAlertTriangle,
   lucideCircleCheckBig,
   lucideHourglass,
+  lucidePencilRuler,
   lucidePlusCircle,
 } from '@ng-icons/lucide';
+import { DialogService } from '@ngneat/dialog';
+import { BrnDialogImports, BrnDialogState } from '@spartan-ng/brain/dialog';
+import { BrnSelectImports } from '@spartan-ng/brain/select';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmEmptyImports } from '@spartan-ng/helm/empty';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { HlmSkeletonImports } from '@spartan-ng/helm/skeleton';
+import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
+import { DataEditorV1Component } from '../../components/data-editor-v1/data-editor-v1.component';
+import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
+import { ScoreblockHeroV1Component } from '../../components/scoreblock-hero-v1/scoreblock-hero-v1.component';
+import { ScoreblockV1Component } from '../../components/scoreblock-v1/scoreblock-v1.component';
+import { TopNavComponent } from '../../components/top-nav/top-nav.component';
+import { AvatarService } from '../../services/avatar.service';
 import {
+  DataSetsV1,
   FlagsDataServiceV1,
   RacePredictionsV1,
   RaceResultV1,
 } from '../../services/race-results-v1.service';
-import { PredictionEditorComponent } from '../../components/prediction-editor/prediction-editor.component';
-import { ResultEditorComponent } from '../../components/result-editor/result-editor.component';
-import { TopNavComponent } from '../../components/top-nav/top-nav.component';
-import { AvatarService } from '../../services/avatar.service';
-import { ScoreblockHeroV1Component } from '../../components/scoreblock-hero-v1/scoreblock-hero-v1.component';
-import { ScoreblockV1Component } from '../../components/scoreblock-v1/scoreblock-v1.component';
 import {
   racePredictionScores,
   ScoreV1Service,
   seasonPredictionScores,
   totalPredictionScores,
 } from '../../services/score-v1.service';
-import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
 
 @Component({
   selector: 'app-season-2025',
   imports: [
     CommonModule,
     FormsModule,
-    PredictionEditorComponent,
-    ResultEditorComponent,
     HlmCardImports,
     BrnDialogImports,
     HlmDialogImports,
@@ -63,7 +63,13 @@ import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.
     HlmSkeletonImports,
   ],
   providers: [
-    provideIcons({ lucideCircleCheckBig, lucideHourglass, lucideAlertTriangle, lucidePlusCircle }),
+    provideIcons({
+      lucidePencilRuler,
+      lucideCircleCheckBig,
+      lucideHourglass,
+      lucideAlertTriangle,
+      lucidePlusCircle,
+    }),
   ],
   templateUrl: './test-season.component.html',
   styleUrl: './test-season.component.css',
@@ -72,6 +78,7 @@ export class TestSeasonComponent {
   public raceDataService = inject(FlagsDataServiceV1);
   public avatars = inject(AvatarService);
   public scoreService = inject(ScoreV1Service);
+  private dialogService = inject(DialogService);
 
   public selectedRaceId = signal<string>('0');
   public selectedYear = signal<string>('2025');
@@ -92,16 +99,12 @@ export class TestSeasonComponent {
 
   public dataLoaded = false;
 
-  constructor() {
-    effect(() => {
-      this.UpdateData();
-    });
+  ngOnInit() {
+    this.UpdateData(this.raceDataService.Datasets());
   }
 
-  UpdateData() {
+  UpdateData(data: DataSetsV1) {
     let raceIds: { name: string; id: string }[] = [];
-
-    const data = this.raceDataService.Datasets();
 
     const races = data[this.selectedYear()].results;
     const keys = Object.keys(races);
@@ -155,29 +158,6 @@ export class TestSeasonComponent {
     this.totalScores.set(scores.totalScores);
   }
 
-  ExportSeasonData() {
-    const seasonData = this.raceDataService.ExportYearData(this.selectedYear());
-
-    const blob = new Blob([seasonData], { type: 'application/json' });
-
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'data.json';
-
-    link.click();
-
-    URL.revokeObjectURL(link.href);
-  }
-
-  AddRaceToSeason() {
-    this.raceDataService.AddRaceToYear(this.selectedYear());
-
-    this.UpdateData();
-
-    const newRaceId = this.raceIds()[this.raceIds().length - 1] || 0;
-    this.selectedRaceId.set(newRaceId.id);
-  }
-
   listToHtmlString(items: string[]): string {
     if (items.length === 0) {
       return 'None';
@@ -186,7 +166,22 @@ export class TestSeasonComponent {
     return items.join(', ');
   }
 
-  openRaceModalToRace(race: string) {
+  openDataEditModal() {
+    const editModalReference = this.dialogService.open(DataEditorV1Component, {
+      width: '80vw',
+      height: '90vh',
+      data: {
+        updateCallBack: () => {
+          this.UpdateData(this.raceDataService.Datasets());
+        },
+      },
+    });
+    editModalReference.afterClosed$.subscribe(() => {
+      this.UpdateData(this.raceDataService.Datasets());
+    });
+  }
+
+  openRaceModalToRace(race: string, tpl: TemplateRef<any>) {
     if (!this.raceDataService.Datasets()[this.selectedYear()].results[+race].finished) {
       return;
     }
@@ -202,7 +197,9 @@ export class TestSeasonComponent {
     );
 
     this.displayedRaceParticipants.set(Object.keys(this.displayedRacePrediction()));
-
-    this.raceDisplayModalIsOpen.set('open');
+    this.dialogService.open(tpl, {
+      width: '80vw',
+      height: '85vh',
+    });
   }
 }

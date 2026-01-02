@@ -1,0 +1,47 @@
+<div class="overflow-auto mt-6">
+  <div class="container mx-auto p-6 pt-2 pb-2">
+    <div class="flex align-middle items-center">
+      <label>Select Race: </label>
+      <brn-select
+        class="inline-block"
+        placeholder="Select a race"
+        [multiple]="false"
+        [(value)]="selectedRaceId"
+      >
+        <hlm-select-trigger class="w-48">
+          <hlm-select-value />
+        </hlm-select-trigger>
+        <hlm-select-content class="w-48">
+          @for(race of raceIds();track race.id) {
+          <hlm-option [value]="race.id">{{ race.name }}</hlm-option
+          >}
+        </hlm-select-content>
+      </brn-select>
+      <button
+        (click)="AddRaceToSeason()"
+        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-1 hover:border-transparent rounded"
+      >
+        <ng-icon hlmIcon name="lucidePlusCircle" />
+      </button>
+      <button
+        (click)="ExportSeasonData()"
+        class="absolute right-12 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-3 h-8.5 py-1 border border-blue-500 hover:border-transparent rounded"
+      >
+        Export
+      </button>
+    </div>
+  </div>
+
+  <div class="">
+    <app-result-editor
+      [year]="selectedYear()"
+      [raceID]="selectedRaceId()"
+      (updatedData)="UpdateData(raceDataService.Datasets())"
+    ></app-result-editor>
+    <app-prediction-editor
+      [year]="selectedYear()"
+      [raceID]="selectedRaceId()"
+      (updatedData)="UpdateData(raceDataService.Datasets())"
+    ></app-prediction-editor>
+  </div>
+</div>

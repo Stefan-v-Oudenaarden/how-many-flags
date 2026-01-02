@@ -1,62 +1,14 @@
 <div class="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50">
   <app-top-nav activeItem="Test Season"></app-top-nav>
   <div class="max-w-450 mx-auto p-4">
-    <!-- Edit Modal -->
-    <hlm-dialog>
-      <button hlmDialogTrigger hlmBtn variant="outline" class="fixed top-14 right-2 text-2xl">
-        ✍️
-      </button>
-      <hlm-dialog-content
-        *brnDialogContent="let ctx"
-        class="overflow-y-auto overflow-x-hidden min-h-[70dvh] max-h-dvh"
-      >
-        <div class="container mx-auto p-6 pt-2 pb-2 max-w-7xl">
-          <div class="flex align-middle items-center">
-            <label>Select Race: </label>
-            <brn-select
-              class="inline-block"
-              placeholder="Select a race"
-              [multiple]="false"
-              [(value)]="selectedRaceId"
-            >
-              <hlm-select-trigger class="w-48">
-                <hlm-select-value />
-              </hlm-select-trigger>
-              <hlm-select-content class="w-48">
-                @for(race of raceIds();track race.id) {
-                <hlm-option [value]="race.id">{{ race.name }}</hlm-option
-                >}
-              </hlm-select-content>
-            </brn-select>
-            <button
-              (click)="AddRaceToSeason()"
-              class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-1 hover:border-transparent rounded"
-            >
-              <ng-icon hlmIcon name="lucidePlusCircle" />
-            </button>
-            <button
-              (click)="ExportSeasonData()"
-              class="absolute right-12 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-3 h-8.5 py-1 border border-blue-500 hover:border-transparent rounded"
-            >
-              Export
-            </button>
-          </div>
-        </div>
-
-        <div class="">
-          <app-result-editor
-            [year]="selectedYear()"
-            [raceID]="selectedRaceId()"
-            (updatedData)="UpdateData()"
-          ></app-result-editor>
-          <app-prediction-editor
-            [year]="selectedYear()"
-            [raceID]="selectedRaceId()"
-            (updatedData)="UpdateData()"
-          ></app-prediction-editor>
-        </div>
-      </hlm-dialog-content>
-    </hlm-dialog>
+    <button
+      hlmBtn
+      variant="outline"
+      class="fixed top-14 right-2 text-2xl cursor-pointer"
+      (click)="openDataEditModal()"
+    >
+      <ng-icon hlmIcon size="sm" name="lucidePencilRuler" />
+    </button>
 
     <hlm-tabs tab="Last Race" class="w-full">
       <hlm-tabs-list aria-label="Tabs">
@@ -558,7 +510,11 @@
         @if(raceDataService.DataLoaded()) {
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 space-4 gap-4">
           @for(race of raceIds(); track race.id) {
-          <section hlmCard class="w-full max-w-sm" (click)="openRaceModalToRace(race.id)">
+          <section
+            hlmCard
+            class="w-full max-w-sm"
+            (click)="openRaceModalToRace(race.id, raceViewModal)"
+          >
             <div hlmCardHeader>
               <h3 hlmCardTitle>
                 {{ raceDataService.Datasets()[selectedYear()].results[+race.id].race }}
@@ -652,24 +608,21 @@
   </div>
 </div>
 
-<hlm-dialog [state]="raceDisplayModalIsOpen()" (closed)="raceDisplayModalIsOpen.set('closed')">
-  <hlm-dialog-content
-    *brnDialogContent="let ctx"
-    class="overflow-y-auto overflow-x-hidden min-h-[70dvh] max-h-dvh"
-  >
-    <hlm-dialog-header>
+<ng-template #raceViewModal let-ref>
+  <div class="overflow-auto">
+    <div class="container mx-auto p-6 pr-10">
       <h3 class="text-4xl bold">
         {{ displayedRaceResults().race }}
       </h3>
-    </hlm-dialog-header>
-    <app-race-view-v1
-      [scores]="displayedRaceScores()"
-      [results]="displayedRaceResults()"
-      [predictions]="displayedRacePrediction()"
-      [participants]="displayedRaceParticipants()"
-      [displaySize]="'small'"
-      ;
-    >
-    </app-race-view-v1>
-  </hlm-dialog-content>
-</hlm-dialog>
+
+      <app-race-view-v1
+        [scores]="displayedRaceScores()"
+        [results]="displayedRaceResults()"
+        [predictions]="displayedRacePrediction()"
+        [participants]="displayedRaceParticipants()"
+        [displaySize]="'small'"
+      >
+      </app-race-view-v1>
+    </div>
+  </div>
+</ng-template>
