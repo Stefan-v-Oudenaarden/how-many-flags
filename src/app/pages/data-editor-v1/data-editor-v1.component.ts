@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -25,6 +25,7 @@ import { ResultEditorComponent } from '../../components/result-editor/result-edi
 import { AvatarService } from '../../services/avatar.service';
 import { DataSetsV1, FlagsDataServiceV1 } from '../../services/race-results-v1.service';
 import { ScoreV1Service } from '../../services/score-v1.service';
+import { TopNavComponent } from '../../components/top-nav/top-nav.component';
 
 interface Data {
   updateCallBack: () => void;
@@ -51,17 +52,32 @@ interface Data {
     NgIcon,
     HlmEmptyImports,
     HlmSkeletonImports,
+    TopNavComponent,
   ],
   templateUrl: './data-editor-v1.component.html',
   styleUrl: './data-editor-v1.component.css',
 })
 export class DataEditorV1Component {
+  readonly id = input<string>();
+
   public raceDataService = inject(FlagsDataServiceV1);
   public avatars = inject(AvatarService);
   public scoreService = inject(ScoreV1Service);
-  private modalRef: DialogRef<Data, boolean> = inject(DialogRef);
 
-  public selectedYear = input<string>('2025');
+  public selectedYear = computed<string>(() => {
+    let id = this.id();
+    let recentYear = this.raceDataService.years[this.raceDataService.years.length - 1];
+
+    if (!id) {
+      return recentYear;
+    }
+
+    if (this.raceDataService.years.indexOf(id) !== -1) {
+      return id;
+    }
+
+    return recentYear;
+  });
   public selectedRaceId = signal<string>('0');
 
   public raceIds = signal<{ name: string; id: string }[]>([]);
@@ -92,7 +108,6 @@ export class DataEditorV1Component {
     }
 
     this.raceIds.set(raceIds);
-    this.modalRef.data.updateCallBack();
   }
 
   AddRaceToSeason() {

@@ -1,20 +1,28 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { TestSeasonComponent } from './pages/test/test-season.component';
+
+import { SeasonV1Component } from './pages/season-v1/season-v1.component';
 
 export const routes: Routes = [
-  { path: 'home', title: 'How Many Flags', component: TestSeasonComponent },
+  { path: 'home', title: 'How Many Flags', component: SeasonV1Component },
   {
     path: 'test',
     title: 'Test Season',
     loadComponent: () =>
-      import('./pages/test/test-season.component').then((m) => m.TestSeasonComponent),
+      import('./pages/season-v1/season-v1.component').then((m) => m.SeasonV1Component),
   },
   {
-    path: '2026',
-    title: '2026 Season',
+    path: 'season/:id',
+    title: 'How Many Flags',
     loadComponent: () =>
-      import('./pages/season-2026/season-2026.component').then((m) => m.Season2026Component),
+      import('./pages/season-v1/season-v1.component').then((m) => m.SeasonV1Component),
+  },
+  {
+    path: 'edit/:id',
+    title: 'How Many Flags',
+    loadComponent: () =>
+      import('./pages/data-editor-v1/data-editor-v1.component').then(
+        (m) => m.DataEditorV1Component
+      ),
   },
   {
     path: 'legacy',

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject, signal, TemplateRef } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, TemplateRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
@@ -22,7 +22,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmSkeletonImports } from '@spartan-ng/helm/skeleton';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
-import { DataEditorV1Component } from '../../components/data-editor-v1/data-editor-v1.component';
 import { RaceViewV1Component } from '../../components/race-view-v1/race-view-v1.component';
 import { ScoreblockHeroV1Component } from '../../components/scoreblock-hero-v1/scoreblock-hero-v1.component';
 import { ScoreblockV1Component } from '../../components/scoreblock-v1/scoreblock-v1.component';
@@ -41,12 +40,15 @@ import {
   seasonRaceRatings,
   totalPredictionScores,
 } from '../../services/score-v1.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-season-2025',
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
+
     HlmCardImports,
     BrnDialogImports,
     HlmDialogImports,
@@ -72,17 +74,32 @@ import {
       lucidePlusCircle,
     }),
   ],
-  templateUrl: './test-season.component.html',
-  styleUrl: './test-season.component.css',
+  templateUrl: './season-v1.component.html',
+  styleUrl: './season-v1.component.css',
 })
-export class TestSeasonComponent {
+export class SeasonV1Component {
+  readonly id = input<string>();
+
   public raceDataService = inject(FlagsDataServiceV1);
   public avatars = inject(AvatarService);
   public scoreService = inject(ScoreV1Service);
   private dialogService = inject(DialogService);
 
   public selectedRaceId = signal<string>('0');
-  public selectedYear = signal<string>('2025');
+  public selectedYear = computed<string>(() => {
+    let id = this.id();
+    let recentYear = this.raceDataService.years[this.raceDataService.years.length - 1];
+
+    if (!id) {
+      return recentYear;
+    }
+
+    if (this.raceDataService.years.indexOf(id) !== -1) {
+      return id;
+    }
+
+    return recentYear;
+  });
   public raceIds = signal<{ name: string; id: string }[]>([]);
   public seasonScores = signal<seasonPredictionScores>({});
   public totalScores = signal<totalPredictionScores>({});
@@ -103,9 +120,13 @@ export class TestSeasonComponent {
 
   public dataLoaded = false;
 
-  ngOnInit() {
-    this.UpdateData(this.raceDataService.Datasets());
+  constructor() {
+    effect(() => {
+      this.UpdateData(this.raceDataService.Datasets());
+    });
   }
+
+  ngOnInit() {}
 
   UpdateData(data: DataSetsV1) {
     let raceIds: { name: string; id: string }[] = [];
@@ -133,6 +154,11 @@ export class TestSeasonComponent {
 
     this.CalculateSeasonScores();
     this.raceIds.set(raceIds);
+
+    this.lastRacePrediction.set({});
+    this.lastRaceParticipants.set([]);
+    this.lastRaceResults.set({} as any);
+    this.lastRaceScores.set({});
 
     if (completedRaceKeys.length === 0) {
       return;
@@ -167,7 +193,6 @@ export class TestSeasonComponent {
     for (const i in this.raceRatings()) {
       const r = this.raceRatings()[i];
       if (!Number.isNaN(r)) {
-        console.log(r);
         allRatings.push(r);
       }
     }
@@ -175,8 +200,6 @@ export class TestSeasonComponent {
 
     this.maxRaceRating.set(allRatings[allRatings.length - 1]);
     this.minRaceRating.set(allRatings[0]);
-
-    console.log(allRatings, this.maxRaceRating(), this.minRaceRating());
   }
 
   listToHtmlString(items: string[]): string {
@@ -185,21 +208,6 @@ export class TestSeasonComponent {
     }
 
     return items.join(', ');
-  }
-
-  openDataEditModal() {
-    const editModalReference = this.dialogService.open(DataEditorV1Component, {
-      width: '80vw',
-      height: '90vh',
-      data: {
-        updateCallBack: () => {
-          this.UpdateData(this.raceDataService.Datasets());
-        },
-      },
-    });
-    editModalReference.afterClosed$.subscribe(() => {
-      this.UpdateData(this.raceDataService.Datasets());
-    });
   }
 
   openRaceModalToRace(race: string, tpl: TemplateRef<any>) {

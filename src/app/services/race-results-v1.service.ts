@@ -70,7 +70,7 @@ type YearDataV1 = {
 export class FlagsDataServiceV1 {
   private http = inject(HttpClient);
 
-  public years: string[] = ['2025'];
+  public years: string[] = ['2025', '2026'];
 
   public Datasets = signal<DataSetsV1>({});
   public DataLoaded = computed(() => {

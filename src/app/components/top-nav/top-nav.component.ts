@@ -15,8 +15,8 @@ import { lucideGithub } from '@ng-icons/lucide';
 })
 export class TopNavComponent {
   navItems = signal([
-    // { label: '2026', url: '/2026' },
-    { label: 'Test Season', url: '/test' },
+    { label: '2026', url: '/season/2026' },
+    { label: '2025', url: '/season/2025' },
     { label: 'Legacy Seasons', url: '/legacy' },
   ]);
 
