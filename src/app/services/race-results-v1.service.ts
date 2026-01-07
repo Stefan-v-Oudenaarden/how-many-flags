@@ -98,34 +98,34 @@ export class FlagsDataServiceV1 {
       },
     });
 
-    this.http.get<YearDataV1>('/data/2025/data.json').subscribe((data) => {
+    this.http.get<YearDataV1>('data/2025/data.json').subscribe((data) => {
       this.LoadYearData('2025', data);
       this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
     });
 
-    this.http.get<DriversTableV1>('/data/2025/drivers.json').subscribe((driversWithTeams) => {
+    this.http.get<DriversTableV1>('data/2025/drivers.json').subscribe((driversWithTeams) => {
       this.LoadDriversTable('2025', driversWithTeams);
       this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
     });
 
     this.http
-      .get<DriversTableOverridesV1>('/data/2025/driver-overrides.json')
+      .get<DriversTableOverridesV1>('data/2025/driver-overrides.json')
       .subscribe((overrides) => {
         this.LoadDriversTableOverrides('2025', overrides);
         this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
       });
 
-    this.http.get<YearDataV1>('/data/2026/data.json').subscribe((data) => {
+    this.http.get<YearDataV1>('data/2026/data.json').subscribe((data) => {
       this.LoadYearData('2026', data);
       this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
     });
 
-    this.http.get<DriversTableV1>('/data/2026/drivers.json').subscribe((driversWithTeams) => {
+    this.http.get<DriversTableV1>('data/2026/drivers.json').subscribe((driversWithTeams) => {
       this.LoadDriversTable('2026', driversWithTeams);
       this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);
     });
     this.http
-      .get<DriversTableOverridesV1>('/data/2026/driver-overrides.json')
+      .get<DriversTableOverridesV1>('data/2026/driver-overrides.json')
       .subscribe((overrides) => {
         this.LoadDriversTableOverrides('2026', overrides);
         this.DatasetsLoaded.set(this.DatasetsLoaded() + 1);

@@ -22,7 +22,7 @@ export class ScoreblockV1Component {
   public displayTop = input<boolean>(true);
   public displayAwards = input<boolean>(false);
   public displayName = input<string>('');
-  public displayIcon = input<string>('/icons/trophy-sharp.svg');
+  public displayIcon = input<string>('icons/trophy-sharp.svg');
   public displayIconStyle = input<string>('bg-linear-to-r from-yellow-400 to-orange-500');
   public displaySize = input<'small' | 'large'>('large');
 

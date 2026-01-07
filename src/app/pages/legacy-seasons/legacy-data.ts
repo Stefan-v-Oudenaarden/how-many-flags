@@ -4,7 +4,7 @@ import { legacyScoreCategory } from './legacy-model';
 export const leaderboardCategory2025: legacyScoreCategory = {
   year: '2025',
   categoryName: 'Overall Leaderboard',
-  categoryIcon: '/icons/trophy-sharp.svg',
+  categoryIcon: 'icons/trophy-sharp.svg',
   categoryIconStyle: 'bg-linear-to-r from-yellow-400 to-orange-500',
   scores: [
     { name: 'Morrigan', score: 111, place: 1 },
@@ -19,7 +19,7 @@ export const leaderboardCategory2025: legacyScoreCategory = {
 export const flagsCategory2025: legacyScoreCategory = {
   year: '2025',
   categoryName: 'Flags',
-  categoryIcon: '/icons/flag-sharp.svg',
+  categoryIcon: 'icons/flag-sharp.svg',
   categoryIconStyle: 'bg-red-500',
   scores: [
     { name: 'Morrigan', score: 38, place: 1 },
@@ -34,7 +34,7 @@ export const flagsCategory2025: legacyScoreCategory = {
 export const driversCategory2025: legacyScoreCategory = {
   year: '2025',
   categoryName: 'Drivers',
-  categoryIcon: '/icons/people-sharp.svg',
+  categoryIcon: 'icons/people-sharp.svg',
   categoryIconStyle: 'bg-blue-500',
   scores: [
     { name: 'Pidgeons', score: 32, place: 1 },
@@ -49,7 +49,7 @@ export const driversCategory2025: legacyScoreCategory = {
 export const winnerCategory2025: legacyScoreCategory = {
   year: '2025',
   categoryName: 'Winner',
-  categoryIcon: '/icons/car-sport-sharp.svg',
+  categoryIcon: 'icons/car-sport-sharp.svg',
   categoryIconStyle: 'bg-yellow-500',
   scores: [
     { name: 'MoonWolf', score: 39, place: 1 },
@@ -64,7 +64,7 @@ export const winnerCategory2025: legacyScoreCategory = {
 export const dnfCategory2025: legacyScoreCategory = {
   year: '2025',
   categoryName: 'DNF',
-  categoryIcon: '/icons/car-crash.svg',
+  categoryIcon: 'icons/car-crash.svg',
   categoryIconStyle: 'bg-gray-800 ',
   scores: [
     { name: 'Ben', score: 11, place: 1 },
@@ -81,7 +81,7 @@ export const dnfCategory2025: legacyScoreCategory = {
 export const leaderboardCategory2024: legacyScoreCategory = {
   year: '2024',
   categoryName: 'Overall Leaderboard',
-  categoryIcon: '/icons/trophy-sharp.svg',
+  categoryIcon: 'icons/trophy-sharp.svg',
   categoryIconStyle: 'bg-linear-to-r from-yellow-400 to-orange-500',
   scores: [
     { name: 'MoonWolf', score: 104, place: 1 },
@@ -97,7 +97,7 @@ export const leaderboardCategory2024: legacyScoreCategory = {
 export const flagsCategory2024: legacyScoreCategory = {
   year: '2024',
   categoryName: 'Flags',
-  categoryIcon: '/icons/flag-sharp.svg',
+  categoryIcon: 'icons/flag-sharp.svg',
   categoryIconStyle: 'bg-red-500',
   scores: [
     { name: 'MoonWolf', score: 37, place: 1 },
@@ -113,7 +113,7 @@ export const flagsCategory2024: legacyScoreCategory = {
 export const driversCategory2024: legacyScoreCategory = {
   year: '2024',
   categoryName: 'Drivers',
-  categoryIcon: '/icons/people-sharp.svg',
+  categoryIcon: 'icons/people-sharp.svg',
   categoryIconStyle: 'bg-blue-500',
   scores: [
     { name: 'Morrigan', score: 24, place: 1 },
@@ -129,7 +129,7 @@ export const driversCategory2024: legacyScoreCategory = {
 export const winnerCategory2024: legacyScoreCategory = {
   year: '2024',
   categoryName: '"Winner"',
-  categoryIcon: '/icons/car-sport-sharp.svg',
+  categoryIcon: 'icons/car-sport-sharp.svg',
   categoryIconStyle: 'bg-yellow-500',
   scores: [
     { name: 'MoonWolf', score: 35, place: 1 },
@@ -145,7 +145,7 @@ export const winnerCategory2024: legacyScoreCategory = {
 export const dnfCategory2024: legacyScoreCategory = {
   year: '2024',
   categoryName: 'DNF',
-  categoryIcon: '/icons/car-crash.svg',
+  categoryIcon: 'icons/car-crash.svg',
   categoryIconStyle: 'bg-gray-800 ',
   scores: [
     { name: 'MoonWolf', score: 11, place: 1 },
@@ -163,7 +163,7 @@ export const dnfCategory2024: legacyScoreCategory = {
 export const leaderboardCategory2023: legacyScoreCategory = {
   year: '2023',
   categoryName: 'Overall Leaderboard',
-  categoryIcon: '/icons/trophy-sharp.svg',
+  categoryIcon: 'icons/trophy-sharp.svg',
   categoryIconStyle: 'bg-linear-to-r from-yellow-400 to-orange-500',
   scores: [
     { name: 'MoonWolf', score: 94, place: 1 },
@@ -180,7 +180,7 @@ export const leaderboardCategory2023: legacyScoreCategory = {
 export const flagsCategory2023: legacyScoreCategory = {
   year: '2023',
   categoryName: 'Flags',
-  categoryIcon: '/icons/flag-sharp.svg',
+  categoryIcon: 'icons/flag-sharp.svg',
   categoryIconStyle: 'bg-red-500',
   scores: [
     { name: 'Morrigan', score: 25, place: 1 },
@@ -197,7 +197,7 @@ export const flagsCategory2023: legacyScoreCategory = {
 export const driversCategory2023: legacyScoreCategory = {
   year: '2023',
   categoryName: 'Drivers',
-  categoryIcon: '/icons/people-sharp.svg',
+  categoryIcon: 'icons/people-sharp.svg',
   categoryIconStyle: 'bg-blue-500',
   scores: [
     { name: 'MoonWolf', score: 17, place: 1 },
@@ -214,7 +214,7 @@ export const driversCategory2023: legacyScoreCategory = {
 export const winnerCategory2023: legacyScoreCategory = {
   year: '2023',
   categoryName: '"Winner"',
-  categoryIcon: '/icons/car-sport-sharp.svg',
+  categoryIcon: 'icons/car-sport-sharp.svg',
   categoryIconStyle: 'bg-yellow-500',
   scores: [
     { name: 'MoonWolf', score: 53, place: 1 },
@@ -231,7 +231,7 @@ export const winnerCategory2023: legacyScoreCategory = {
 export const lastCategory2023: legacyScoreCategory = {
   year: '2023',
   categoryName: 'Dead Last',
-  categoryIcon: '/icons/car-crash.svg',
+  categoryIcon: 'icons/car-crash.svg',
   categoryIconStyle: 'bg-gray-800 ',
   scores: [
     { name: 'Ben', score: 13, place: 1 },
@@ -250,7 +250,7 @@ export const lastCategory2023: legacyScoreCategory = {
 export const leaderboardCategory2022: legacyScoreCategory = {
   year: '2022',
   categoryName: 'Overall Leaderboard',
-  categoryIcon: '/icons/trophy-sharp.svg',
+  categoryIcon: 'icons/trophy-sharp.svg',
   categoryIconStyle: 'bg-linear-to-r from-yellow-400 to-orange-500',
   scores: [
     { name: 'Ben', score: 44, place: 1 },
@@ -269,7 +269,7 @@ export const leaderboardCategory2022: legacyScoreCategory = {
 export const flagsCategory2022: legacyScoreCategory = {
   year: '2022',
   categoryName: 'Flags',
-  categoryIcon: '/icons/flag-sharp.svg',
+  categoryIcon: 'icons/flag-sharp.svg',
   categoryIconStyle: 'bg-red-500',
   scores: [
     { name: 'Ben', score: 26, place: 1 },
@@ -288,7 +288,7 @@ export const flagsCategory2022: legacyScoreCategory = {
 export const driversCategory2022: legacyScoreCategory = {
   year: '2022',
   categoryName: 'Drivers',
-  categoryIcon: '/icons/people-sharp.svg',
+  categoryIcon: 'icons/people-sharp.svg',
   categoryIconStyle: 'bg-blue-500',
   scores: [
     { name: 'Morrigan', score: 21, place: 1 },
