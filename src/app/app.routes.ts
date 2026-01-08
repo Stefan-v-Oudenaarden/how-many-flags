@@ -58,7 +58,7 @@ export const routes: Routes = [
   },
   {
     path: 'legacy/2025',
-    title: 'Legacy Season 22025',
+    title: 'Legacy Season 2025',
     loadComponent: () =>
       import('./pages/legacy-seasons/2025/LegacyStandings2025Component.component').then(
         (m) => m.LegacyStandings2025Component

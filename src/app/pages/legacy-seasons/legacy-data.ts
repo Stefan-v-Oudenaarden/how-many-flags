@@ -213,7 +213,7 @@ export const driversCategory2023: legacyScoreCategory = {
 
 export const winnerCategory2023: legacyScoreCategory = {
   year: '2023',
-  categoryName: '"Winner"',
+  categoryName: 'Winner',
   categoryIcon: 'icons/car-sport-sharp.svg',
   categoryIconStyle: 'bg-yellow-500',
   scores: [
