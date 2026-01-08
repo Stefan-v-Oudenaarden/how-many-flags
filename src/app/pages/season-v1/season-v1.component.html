@@ -31,6 +31,7 @@
             ></app-scoreblock-hero-v1>
           </div>
           }@else {
+          <!-- skeletons -->
           <div class="bg-white rounded-2xl shadow-2xl p-8 top-8">
             <div class="flex items-center gap-3 mb-8">
               <hlm-skeleton class="h-12 w-12 rounded-sm" />
@@ -347,6 +348,7 @@
         >
         </app-race-view-v1>
         }@else {
+        <!-- skeletons -->
         <div class="grid grid-cols-1 md:grid-cols-2 space-4 gap-4">
           <!-- Results-->
 
@@ -552,7 +554,7 @@
                 </tr>
                 <tr>
                   <td class="px-3 py-2 font-semibold">Winner</td>
-                  <td class="px-3 py-2">
+                  <td class="px-3 py-2 truncate max-w-18 sm:w-28 md:w-full">
                     {{ raceDataService.Datasets()[selectedYear()].results[+race.id].winner }}
                   </td>
                 </tr>
@@ -602,13 +604,11 @@
               <div hlmEmptyTitle>No Race Data Found.</div>
               <div hlmEmptyDescription>Add data to the files for this year of How Many Flags.</div>
             </div>
-            <!-- <div hlmEmptyContent>
-              <button hlmBtn variant="outline">Upload Files</button>
-            </div> -->
           </div>
           }
         </div>
         }@else {
+        <!-- skeletons -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 space-4 gap-4">
           @for(race of [0,1,2,3,4,5,6,7,8,9,10,11]; track race) {
           <section hlmCard class="w-full max-w-sm px-4">
@@ -631,9 +631,9 @@
 </div>
 
 <ng-template #raceViewModal let-ref>
-  <div class="overflow-auto">
-    <div class="container mx-auto p-6 pr-10">
-      <h3 class="text-4xl bold">
+  <div class="overflow-auto p-0.5 sm:p-1 md:-4">
+    <div class="container mx-auto pt-3 pb-3 md:p-6 md:pr-10 p-0.5 sm:p-1 md:-4">
+      <h3 class="text-lg md:text-4xl bold">
         {{ displayedRaceResults().race }}
       </h3>
 

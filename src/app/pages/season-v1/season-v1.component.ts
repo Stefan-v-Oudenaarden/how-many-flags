@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, computed, effect, inject, input, signal, TemplateRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -81,6 +82,7 @@ export class SeasonV1Component {
   readonly id = input<string>();
 
   public raceDataService = inject(FlagsDataServiceV1);
+  public BreakpointObserver = inject(BreakpointObserver);
   public avatars = inject(AvatarService);
   public scoreService = inject(ScoreV1Service);
   private dialogService = inject(DialogService);
@@ -107,6 +109,7 @@ export class SeasonV1Component {
   public maxRaceRating = signal<number>(Number.MAX_VALUE);
   public minRaceRating = signal<number>(Number.MIN_VALUE);
   public raceDisplayModalIsOpen = signal<BrnDialogState>('closed');
+  public smallPhone = signal<boolean>(false);
 
   public lastRaceScores = signal<racePredictionScores>({});
   public lastRaceResults = signal<RaceResultV1>({} as any);
@@ -123,6 +126,10 @@ export class SeasonV1Component {
   constructor() {
     effect(() => {
       this.UpdateData(this.raceDataService.Datasets());
+    });
+
+    this.BreakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe((r) => {
+      this.smallPhone.set(r.breakpoints[Breakpoints.Small] || r.breakpoints[Breakpoints.XSmall]);
     });
   }
 
@@ -226,10 +233,22 @@ export class SeasonV1Component {
     );
 
     this.displayedRaceParticipants.set(Object.keys(this.displayedRacePrediction()));
-    this.dialogService.open(tpl, {
-      width: '80vw',
-      height: '85vh',
-      id: 'raceViewModal',
-    });
+
+    console.log(this.smallPhone());
+
+    if (this.smallPhone()) {
+      console.log('opening small');
+      this.dialogService.open(tpl, {
+        size: 'fullScreen',
+        id: 'raceViewModal',
+        windowClass: 'padding-override',
+      });
+    } else {
+      this.dialogService.open(tpl, {
+        width: '80vw',
+        height: '85vh',
+        id: 'raceViewModal',
+      });
+    }
   }
 }

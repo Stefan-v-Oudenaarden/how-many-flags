@@ -1,7 +1,7 @@
-<div class="grid grid-cols-1 md:grid-cols-2 space-4 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 md:space-4 md:gap-4">
   <!-- Results-->
 
-  <div class="space-4 gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
+  <div class="md:space-4 md:gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
     <div>
       <h3
         class="text-sm font-semibold text-gray-800 bg-gray-100 border-b border-gray-200 text-center py-3"
@@ -80,7 +80,7 @@
   </div>
 
   <!-- Predictions-->
-  <div class="space-4 gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
+  <div class="md:space-4 md:gap-4 bg-white rounded-lg shadow overflow-hidden my-4">
     <div>
       <h3
         class="text-sm font-semibold text-gray-800 bg-gray-100 border-b border-gray-200 text-center py-3"
@@ -105,36 +105,66 @@
     <table class="w-full pt-0 mt-0">
       <thead class="bg-blue-50 border-b border-gray-200">
         <tr>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Participant</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
+          <th
+            class="px-6 py-3 text-left text-sm font-normal md:font-semibold text-gray-700 truncate max-w-24 md:max-w-60"
+          >
+            Participant
+          </th>
+          <th
+            class="px-6 py-3 text-left text-sm font-normal md:font-semibold text-gray-700 truncate max-w-8 md:max-w-60"
+          >
+            Flags
+          </th>
+          <th
+            class="px-6 py-3 text-left text-sm font-normal md:font-semibold text-gray-700 truncate max-w-8 md:max-w-60"
+          >
+            Drivers
+          </th>
+          <th
+            class="px-6 py-3 text-left text-sm font-normal md:font-semibold text-gray-700 truncate max-w-12 md:max-w-60"
+          >
+            Winner
+          </th>
+          <th
+            class="px-6 py-3 text-left text-sm font-normal md:font-semibold text-gray-700 truncate max-w-12 md:max-w-60"
+          >
+            DNF
+          </th>
         </tr>
       </thead>
 
       <tbody class="divide-y divide-gray-200 border-b">
         @for(participant of participants(); track participant) {
         <tr class="hover:bg-gray-50 transition-colors">
-          <td class="px-6 py-4 font-medium text-gray-900 truncate max-w-48">
+          <td
+            class="px-6 py-4 text-sm md:text-md font-normal text-gray-900 truncate max-w-24 md:max-w-60"
+          >
             {{ participant }}
           </td>
-          <td class="px-3 py-2">
+          <td
+            class="px-3 py-2 text-sm md:text-md font-normal text-gray-900 truncate max-w-24 md:max-w-60"
+          >
             <div>
               {{ predictions()[participant].flags }}
             </div>
           </td>
-          <td class="px-3 py-2">
+          <td
+            class="px-3 py-2 text-sm md:text-md font-normal text-gray-900 truncate max-w-24 md:max-w-60"
+          >
             <div>
               {{ predictions()[participant].drivers }}
             </div>
           </td>
-          <td class="px-3 py-2">
+          <td
+            class="px-3 py-2 text-sm md:text-md font-normal text-gray-900 truncate max-w-24 md:max-w-60"
+          >
             <div>
               {{ predictions()[participant].winner }}
             </div>
           </td>
-          <td class="px-3 py-2 truncate">
+          <td
+            class="px-3 py-2 text-sm md:text-md font-normal text-gray-900 truncate max-w-24 md:max-w-60"
+          >
             <div>
               {{ predictions()[participant].dnf }}
             </div>

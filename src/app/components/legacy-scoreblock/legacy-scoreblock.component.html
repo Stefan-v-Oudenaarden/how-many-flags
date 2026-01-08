@@ -1,6 +1,9 @@
 <div class="bg-white rounded-2xl shadow-lg p-4 hover:shadow-xl transition-shadow">
   <div class="flex items-center gap-3 mb-4">
-    <div class="p-3 rounded-xl shadow-md" [class]="scoreCategory().categoryIconStyle">
+    <div
+      class="p-3 rounded-xl shadow-md hidden sm:contents"
+      [class]="scoreCategory().categoryIconStyle"
+    >
       <img class="w-4 h-4 invert" [src]="scoreCategory().categoryIcon" />
     </div>
     <h2 class="text-2xl font-bold text-gray-800">{{ scoreCategory().categoryName }}</h2>
@@ -17,7 +20,7 @@
       "
     >
       <div class="flex items-center gap-3">
-        <div class="relative">
+        <div class="relative hidden sm:contents">
           <div>
             <img [src]="avatars.Avatars.get(line.name)?.url" class="w-10 h-10 rounded-xl" />
             @if (line.place === 1) {
