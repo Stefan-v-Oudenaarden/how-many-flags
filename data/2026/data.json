@@ -2,10 +2,40 @@
   "predictions": {
     "0": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Lawson",
+        "winner": "Leclerc",
+        "flags": 3,
+        "drivers": 17
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Antonelli",
+        "flags": 3,
+        "drivers": 15
+      },
+      "Morrigan": {
+        "dnf": "Perez",
+        "winner": "Russell",
+        "flags": 3,
+        "drivers": 17
+      },
+      "Alice": {
+        "dnf": "Lindblad",
+        "winner": "Russell",
+        "flags": 2,
+        "drivers": 16
+      },
+      "Shaun": {
+        "dnf": "Perez",
+        "winner": "Russell",
+        "flags": 3,
+        "drivers": 16
+      },
+      "Ben": {
+        "dnf": "Sainz",
+        "winner": "Russell",
+        "flags": 5,
+        "drivers": 10
       }
     },
     "1": {
