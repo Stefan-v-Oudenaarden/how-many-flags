@@ -11,13 +11,15 @@
         "dnf": "Russell",
         "winner": "Antonelli",
         "flags": 3,
-        "drivers": 15
+        "drivers": 15,
+        "rating": 7
       },
       "Morrigan": {
         "dnf": "Perez",
         "winner": "Russell",
         "flags": 3,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 7
       },
       "Alice": {
         "dnf": "Lindblad",
@@ -29,13 +31,15 @@
         "dnf": "Perez",
         "winner": "Russell",
         "flags": 3,
-        "drivers": 16
+        "drivers": 16,
+        "rating": 6
       },
       "Ben": {
         "dnf": "Sainz",
         "winner": "Russell",
         "flags": 5,
-        "drivers": 10
+        "drivers": 10,
+        "rating": 6
       }
     },
     "1": {
