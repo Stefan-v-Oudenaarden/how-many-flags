@@ -2,10 +2,44 @@
   "predictions": {
     "0": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Lawson",
+        "winner": "Leclerc",
+        "flags": 3,
+        "drivers": 17
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Antonelli",
+        "flags": 3,
+        "drivers": 15,
+        "rating": 7
+      },
+      "Morrigan": {
+        "dnf": "Perez",
+        "winner": "Russell",
+        "flags": 3,
+        "drivers": 17,
+        "rating": 7
+      },
+      "Alice": {
+        "dnf": "Lindblad",
+        "winner": "Russell",
+        "flags": 2,
+        "drivers": 16
+      },
+      "Shaun": {
+        "dnf": "Perez",
+        "winner": "Russell",
+        "flags": 3,
+        "drivers": 16,
+        "rating": 6
+      },
+      "Ben": {
+        "dnf": "Sainz",
+        "winner": "Russell",
+        "flags": 5,
+        "drivers": 10,
+        "rating": 6
       }
     },
     "1": {
@@ -196,13 +230,20 @@
   "results": [
     {
       "id": 0,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
+      "flags": 3,
+      "drivers": 17,
+      "winner": "Russell",
+      "team": "Mercedes",
+      "dnfs": [
+        "Hulkenberg",
+        "Piastri",
+        "Hadjar",
+        "Bottas",
+        "Alonso"
+      ],
       "race": "Australia",
-      "finished": false
+      "finished": true,
+      "notes": "Hulkenburg tried a pit-lane start but did not start. \nPiastry crashed the car on the way to the formation lap. \nAlonso retired the car and then unretired the car 15 minutes later. Then retired the car again. \nThen stroll retired the car, and unreitred it 12 laps later. "
     },
     {
       "id": 1,
