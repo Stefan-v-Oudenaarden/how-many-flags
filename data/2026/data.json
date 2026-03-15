@@ -69,7 +69,7 @@
       },
       " Shaun ": {
         "dnf": "Hulkenberg",
-        "winner": "Bortoleto",
+        "winner": "Antonelli",
         "flags": 2,
         "drivers": 17
       },
@@ -277,13 +277,18 @@
     },
     {
       "id": 1,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
+      "flags": 1,
+      "drivers": 16,
+      "winner": "Antonelli",
+      "team": "Mercedes",
+      "dnfs": [
+        "Alonso",
+        "Stroll",
+        "Verstappen"
+      ],
       "race": "China",
-      "finished": false
+      "finished": true,
+      "notes": "albon, bortolette, norris and piastri did not start the race. engine/battery issues. "
     },
     {
       "id": 2,
