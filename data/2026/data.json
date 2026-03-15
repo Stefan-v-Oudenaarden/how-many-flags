@@ -47,37 +47,43 @@
         "dnf": "Hulkenberg",
         "winner": "Norris",
         "flags": 1,
-        "drivers": 19
+        "drivers": 19,
+        "rating": null
       },
       "MoonWolf": {
         "dnf": "Russell",
         "winner": "Antonelli",
         "flags": 2,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 8
       },
       "Morrigan": {
         "dnf": "Albon",
         "winner": "Russell",
         "flags": 2,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 7
       },
       "Alice": {
         "dnf": "Stroll",
         "winner": "Leclerc",
         "flags": 3,
-        "drivers": 16
+        "drivers": 16,
+        "rating": 8
       },
       "Shaun": {
         "dnf": "Hulkenberg",
         "winner": "Antonelli",
         "flags": 2,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 8
       },
       "Ben": {
         "dnf": "Perez",
         "winner": "Hamilton",
         "flags": 3,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 8
       }
     },
     "2": {
@@ -264,7 +270,13 @@
       "drivers": 17,
       "winner": "Russell",
       "team": "Mercedes",
-      "dnfs": ["Hulkenberg", "Piastri", "Hadjar", "Bottas", "Alonso"],
+      "dnfs": [
+        "Hulkenberg",
+        "Piastri",
+        "Hadjar",
+        "Bottas",
+        "Alonso"
+      ],
       "race": "Australia",
       "finished": true,
       "notes": "Hulkenburg tried a pit-lane start but did not start. \nPiastry crashed the car on the way to the formation lap. \nAlonso retired the car and then unretired the car 15 minutes later. Then retired the car again. \nThen stroll retired the car, and unreitred it 12 laps later. "
@@ -275,7 +287,11 @@
       "drivers": 16,
       "winner": "Antonelli",
       "team": "Mercedes",
-      "dnfs": ["Alonso", "Stroll", "Verstappen"],
+      "dnfs": [
+        "Alonso",
+        "Stroll",
+        "Verstappen"
+      ],
       "race": "China",
       "finished": true,
       "notes": "albon, bortolette, norris and piastri did not start the race. engine/battery issues. "
