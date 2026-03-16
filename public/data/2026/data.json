@@ -44,10 +44,46 @@
     },
     "1": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Hulkenberg",
+        "winner": "Norris",
+        "flags": 1,
+        "drivers": 19,
+        "rating": null
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Antonelli",
+        "flags": 2,
+        "drivers": 18,
+        "rating": 8
+      },
+      "Morrigan": {
+        "dnf": "Albon",
+        "winner": "Russell",
+        "flags": 2,
+        "drivers": 17,
+        "rating": 7
+      },
+      "Alice": {
+        "dnf": "Stroll",
+        "winner": "Leclerc",
+        "flags": 3,
+        "drivers": 16,
+        "rating": 8
+      },
+      "Shaun": {
+        "dnf": "Hulkenberg",
+        "winner": "Antonelli",
+        "flags": 2,
+        "drivers": 17,
+        "rating": 8
+      },
+      "Ben": {
+        "dnf": "Perez",
+        "winner": "Hamilton",
+        "flags": 3,
+        "drivers": 18,
+        "rating": 8
       }
     },
     "2": {
@@ -247,13 +283,18 @@
     },
     {
       "id": 1,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
+      "flags": 1,
+      "drivers": 16,
+      "winner": "Antonelli",
+      "team": "Mercedes",
+      "dnfs": [
+        "Alonso",
+        "Stroll",
+        "Verstappen"
+      ],
       "race": "China",
-      "finished": false
+      "finished": true,
+      "notes": "albon, bortolette, norris and piastri did not start the race. engine/battery issues. "
     },
     {
       "id": 2,
