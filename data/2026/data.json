@@ -278,7 +278,7 @@
         "Alonso"
       ],
       "race": "Australia",
-      "finished": true,
+      "status": "finished",
       "notes": "Hulkenburg tried a pit-lane start but did not start. \nPiastry crashed the car on the way to the formation lap. \nAlonso retired the car and then unretired the car 15 minutes later. Then retired the car again. \nThen stroll retired the car, and unreitred it 12 laps later. "
     },
     {
@@ -293,7 +293,7 @@
         "Verstappen"
       ],
       "race": "China",
-      "finished": true,
+      "status": "finished",
       "notes": "albon, bortolette, norris and piastri did not start the race. engine/battery issues. "
     },
     {
@@ -304,7 +304,7 @@
       "team": "",
       "dnfs": [],
       "race": "Japan",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 3,
@@ -314,7 +314,8 @@
       "team": "",
       "dnfs": [],
       "race": "Bahrain",
-      "finished": false
+      "status": "cancelled",
+      "notes": "Cancelled because of the America, Israel, Iran war of 2026."
     },
     {
       "id": 4,
@@ -324,7 +325,8 @@
       "team": "",
       "dnfs": [],
       "race": "Saudi Arabia",
-      "finished": false
+      "status": "cancelled",
+      "notes": "Cancelled because of the America, Israel, Iran war of 2026."
     },
     {
       "id": 5,
@@ -334,7 +336,7 @@
       "team": "",
       "dnfs": [],
       "race": "Miami",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 6,
@@ -344,7 +346,7 @@
       "team": "",
       "dnfs": [],
       "race": "Canada",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 7,
@@ -354,7 +356,7 @@
       "team": "",
       "dnfs": [],
       "race": "Monaco",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 8,
@@ -364,7 +366,7 @@
       "team": "",
       "dnfs": [],
       "race": "Spain",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 9,
@@ -374,7 +376,7 @@
       "team": "",
       "dnfs": [],
       "race": "Austria",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 10,
@@ -384,7 +386,7 @@
       "team": "",
       "dnfs": [],
       "race": "Great Britain",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 11,
@@ -394,7 +396,7 @@
       "team": "",
       "dnfs": [],
       "race": "Belgium",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 12,
@@ -404,7 +406,7 @@
       "team": "",
       "dnfs": [],
       "race": "Hungary",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 13,
@@ -414,7 +416,7 @@
       "team": "",
       "dnfs": [],
       "race": "Netherlands",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 14,
@@ -424,7 +426,7 @@
       "team": "",
       "dnfs": [],
       "race": "Italy",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 15,
@@ -434,7 +436,7 @@
       "team": "",
       "dnfs": [],
       "race": "Spain",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 16,
@@ -444,7 +446,7 @@
       "team": "",
       "dnfs": [],
       "race": "Azerbaijan",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 17,
@@ -454,7 +456,7 @@
       "team": "",
       "dnfs": [],
       "race": "Singapore",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 18,
@@ -464,7 +466,7 @@
       "team": "",
       "dnfs": [],
       "race": "Austin",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 19,
@@ -474,7 +476,7 @@
       "team": "",
       "dnfs": [],
       "race": "Mexico",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 20,
@@ -484,7 +486,7 @@
       "team": "",
       "dnfs": [],
       "race": "Brazil",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 21,
@@ -494,7 +496,7 @@
       "team": "",
       "dnfs": [],
       "race": "Las Vegas",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 22,
@@ -504,7 +506,7 @@
       "team": "",
       "dnfs": [],
       "race": "Qatar",
-      "finished": false
+      "status": "ready"
     },
     {
       "id": 23,
@@ -514,7 +516,7 @@
       "team": "",
       "dnfs": [],
       "race": "Abu Dhabi",
-      "finished": false
+      "status": "ready"
     }
   ]
 }
