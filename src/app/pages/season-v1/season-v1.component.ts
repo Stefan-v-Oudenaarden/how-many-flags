@@ -10,6 +10,8 @@ import {
   lucideHourglass,
   lucidePencilRuler,
   lucidePlusCircle,
+  lucideEye,
+  lucideXSquare,
 } from '@ng-icons/lucide';
 import { DialogService } from '@ngneat/dialog';
 import { BrnDialogImports, BrnDialogState } from '@spartan-ng/brain/dialog';
@@ -73,6 +75,8 @@ import { RouterLink } from '@angular/router';
       lucideHourglass,
       lucideAlertTriangle,
       lucidePlusCircle,
+      lucideEye,
+      lucideXSquare,
     }),
   ],
   templateUrl: './season-v1.component.html',
@@ -146,7 +150,7 @@ export class SeasonV1Component {
       let race = races[+key];
       raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
 
-      if (race.finished) {
+      if (race.status === 'finished') {
         completedRaceKeys.push(race.id);
       }
     }
@@ -188,7 +192,7 @@ export class SeasonV1Component {
     let scores = this.scoreService.CalculateSeasonScores(
       races,
       racePredictions,
-      this.selectedYear()
+      this.selectedYear(),
     );
 
     this.seasonScores.set(scores.seasonScores);
@@ -218,18 +222,18 @@ export class SeasonV1Component {
   }
 
   openRaceModalToRace(race: string, tpl: TemplateRef<any>) {
-    if (!this.raceDataService.Datasets()[this.selectedYear()].results[+race].finished) {
+    if (this.raceDataService.Datasets()[this.selectedYear()].results[+race].status === 'ready') {
       return;
     }
 
     this.displayedRaceResults.set(
-      this.raceDataService.Datasets()[this.selectedYear()].results[+race]
+      this.raceDataService.Datasets()[this.selectedYear()].results[+race],
     );
 
     this.displayedRaceScores.set(this.seasonScores()[race]);
 
     this.displayedRacePrediction.set(
-      this.raceDataService.Datasets()[this.selectedYear()].predictions[+race]
+      this.raceDataService.Datasets()[this.selectedYear()].predictions[+race],
     );
 
     this.displayedRaceParticipants.set(Object.keys(this.displayedRacePrediction()));

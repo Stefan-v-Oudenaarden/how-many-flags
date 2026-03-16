@@ -26,7 +26,7 @@ export type RaceResultV1 = {
   winner: string;
   team: string;
   dnfs: string[];
-  finished: boolean;
+  status: 'ready' | 'started' | 'finished' | 'cancelled';
   notes: string;
 };
 
@@ -199,7 +199,7 @@ export class FlagsDataServiceV1 {
       winner: 'Placeholder',
       team: 'Placeholder Team',
       dnfs: [],
-      finished: false,
+      status: 'ready',
       notes: '',
     };
 

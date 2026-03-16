@@ -61,7 +61,7 @@ export class ScoreV1Service {
     }
 
     for (const race of races) {
-      if (!race.finished) {
+      if (race.status !== 'finished') {
         continue;
       }
 

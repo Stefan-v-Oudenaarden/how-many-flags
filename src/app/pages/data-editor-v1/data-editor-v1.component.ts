@@ -102,7 +102,7 @@ export class DataEditorV1Component {
       let race = races[+key];
       raceIds.push({ id: key, name: race.race || (+key + 1).toString() });
 
-      if (race.finished) {
+      if (race.status === 'finished') {
         completedRaceKeys.push(race.id);
       }
     }

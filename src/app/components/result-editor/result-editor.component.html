@@ -1,121 +1,137 @@
-@if(raceData) {
-<div class="container mx-auto p-6 pt-2">
-  <div class="bg-white rounded-lg shadow overflow-hidden">
-    <div class="overflow-x-auto">
-      <table class="w-full">
-        <thead class="bg-gray-100 border-b border-gray-200">
-          <tr>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Race</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Team</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-3 py-2">
-              <input
-                type="text"
-                [(ngModel)]="raceData.race"
-                class="w-48 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                (ngModelChange)="onModelChange()"
-              />
-            </td>
-            <td class="px-3 py-2">
-              <input
-                type="number"
-                [(ngModel)]="raceData.flags"
-                min="0"
-                class="w-16 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                (ngModelChange)="onModelChange()"
-              />
-            </td>
-            <td class="px-3 py-2">
-              <input
-                type="number"
-                [(ngModel)]="raceData.drivers"
-                min="0"
-                class="w-16 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                (ngModelChange)="onModelChange()"
-              />
-            </td>
-            <td class="px-3 py-2">
-              <brn-select
-                class="inline-block"
-                placeholder="Select a driver"
-                [multiple]="false"
-                [(value)]="raceData.winner"
-                (valueChange)="onModelChange()"
-              >
-                <hlm-select-trigger class="w-34">
-                  <hlm-select-value />
-                </hlm-select-trigger>
-                <hlm-select-content class="">
-                  @for(driver of raceDataService.Datasets()[year()].drivers;track driver) {
-                  <hlm-option [value]="driver" class="h-6">{{ driver }}</hlm-option
-                  >}
-                </hlm-select-content>
-              </brn-select>
-            </td>
-            <td class="px-3 py-2">
-              <brn-select
-                class="inline-block"
-                placeholder="Select a team"
-                [multiple]="false"
-                [(value)]="raceData.team"
-                (valueChange)="onModelChange()"
-              >
-                <hlm-select-trigger class="w-34">
-                  <hlm-select-value />
-                </hlm-select-trigger>
-                <hlm-select-content>
-                  @for(team of raceDataService.Datasets()[year()].teams;track team) {
-                  <hlm-option [value]="team" class="h-8">{{ team }}</hlm-option
-                  >}
-                </hlm-select-content>
-              </brn-select>
-            </td>
-            <td class="px-3 py-2">
-              <brn-select
-                class="inline-block"
-                placeholder="Select a driver"
-                [multiple]="true"
-                [(value)]="raceData.dnfs"
-                (valueChange)="onModelChange()"
-              >
-                <hlm-select-trigger class="w-34">
-                  <hlm-select-value />
-                </hlm-select-trigger>
-                <hlm-select-content>
-                  @for(driver of raceDataService.Datasets()[year()].drivers;track driver) {
-                  <hlm-option [value]="driver" class="h-6">{{ driver }}</hlm-option
-                  >}
-                </hlm-select-content>
-              </brn-select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="px-3 pb-2">
-        <textarea
-          hlmTextarea
-          class="w-full"
-          placeholder="Any notes for this race..."
-          [(ngModel)]="raceData.notes"
-        ></textarea>
-      </div>
-      <div class="flex justify-end-safe mx-4">
-        <label>Race Completed</label>
-        <input
+@if (raceData) {
+  <div class="container mx-auto p-6 pt-2">
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-100 border-b border-gray-200">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Race</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Flags</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Drivers</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Winner</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Team</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">DNF</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-3 py-2">
+                <input
+                  type="text"
+                  [(ngModel)]="raceData.race"
+                  class="w-48 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  (ngModelChange)="onModelChange()"
+                />
+              </td>
+              <td class="px-3 py-2">
+                <input
+                  type="number"
+                  [(ngModel)]="raceData.flags"
+                  min="0"
+                  class="w-16 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  (ngModelChange)="onModelChange()"
+                />
+              </td>
+              <td class="px-3 py-2">
+                <input
+                  type="number"
+                  [(ngModel)]="raceData.drivers"
+                  min="0"
+                  class="w-16 px-3 h-8.5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  (ngModelChange)="onModelChange()"
+                />
+              </td>
+              <td class="px-3 py-2">
+                <brn-select
+                  class="inline-block"
+                  placeholder="Select a driver"
+                  [multiple]="false"
+                  [(value)]="raceData.winner"
+                  (valueChange)="onModelChange()"
+                >
+                  <hlm-select-trigger class="w-34">
+                    <hlm-select-value />
+                  </hlm-select-trigger>
+                  <hlm-select-content class="">
+                    @for (driver of raceDataService.Datasets()[year()].drivers; track driver) {
+                      <hlm-option [value]="driver" class="h-6">{{ driver }}</hlm-option>
+                    }
+                  </hlm-select-content>
+                </brn-select>
+              </td>
+              <td class="px-3 py-2">
+                <brn-select
+                  class="inline-block"
+                  placeholder="Select a team"
+                  [multiple]="false"
+                  [(value)]="raceData.team"
+                  (valueChange)="onModelChange()"
+                >
+                  <hlm-select-trigger class="w-34">
+                    <hlm-select-value />
+                  </hlm-select-trigger>
+                  <hlm-select-content>
+                    @for (team of raceDataService.Datasets()[year()].teams; track team) {
+                      <hlm-option [value]="team" class="h-8">{{ team }}</hlm-option>
+                    }
+                  </hlm-select-content>
+                </brn-select>
+              </td>
+              <td class="px-3 py-2">
+                <brn-select
+                  class="inline-block"
+                  placeholder="Select a driver"
+                  [multiple]="true"
+                  [(value)]="raceData.dnfs"
+                  (valueChange)="onModelChange()"
+                >
+                  <hlm-select-trigger class="w-34">
+                    <hlm-select-value />
+                  </hlm-select-trigger>
+                  <hlm-select-content>
+                    @for (driver of raceDataService.Datasets()[year()].drivers; track driver) {
+                      <hlm-option [value]="driver" class="h-6">{{ driver }}</hlm-option>
+                    }
+                  </hlm-select-content>
+                </brn-select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="px-3 pb-2">
+          <textarea
+            hlmTextarea
+            class="w-full"
+            placeholder="Any notes for this race..."
+            [(ngModel)]="raceData.notes"
+          ></textarea>
+        </div>
+        <div class="flex justify-end-safe mx-4 mb-2">
+          <!-- <input
           type="checkbox"
           [(ngModel)]="raceData.finished"
           class="w-4 px-4 ml-4 h-8.5 py-2 border border-gray-300 rounded-md"
           (ngModelChange)="onModelChange()"
-        />
+        /> -->
+          <brn-select
+            class="inline-block"
+            placeholder="Select a driver"
+            [multiple]="false"
+            [(value)]="raceData.status"
+            (valueChange)="onModelChange()"
+          >
+            <hlm-select-trigger class="w-34">
+              <hlm-select-value />
+            </hlm-select-trigger>
+            <hlm-select-content class="">
+              <hlm-option value="ready" class="h-6">Ready</hlm-option>
+              <hlm-option value="started" class="h-6">Started</hlm-option>
+              <hlm-option value="finished" class="h-6">Finished</hlm-option>
+              <hlm-option value="cancelled" class="h-6">Cancelled</hlm-option>
+            </hlm-select-content>
+          </brn-select>
+        </div>
       </div>
     </div>
   </div>
-</div>
 }
