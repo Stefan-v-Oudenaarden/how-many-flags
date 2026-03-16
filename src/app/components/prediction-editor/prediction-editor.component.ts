@@ -61,10 +61,22 @@ export class PredictionEditorComponent {
     this.updatedData.emit();
   }
 
+  AutofillParticipants() {
+    for (let prediction of Object.keys(this.raceDataService.Datasets()[this.year()].predictions)) {
+      let names = Object.keys(this.raceDataService.Datasets()[this.year()].predictions[prediction]);
+      for (let name of names) {
+        //participants.add(name);
+        this.AddParticipant(name);
+      }
+    }
+  }
+
   AddParticipant(name: string) {
     if (!name) {
       return;
     }
+
+    name = name.trim();
 
     this.raceDataService.AddParticipantToPredictions(this.year(), this.raceID(), name);
     this.participants.add(name);
