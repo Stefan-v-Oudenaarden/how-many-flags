@@ -497,18 +497,20 @@
     {
       "id": 7,
       "flags": 1,
-      "drivers": 17,
-      "winner": "",
-      "team": "",
+      "drivers": 15,
+      "winner": "Antonelli",
+      "team": "Mercedes",
       "dnfs": [
         "Verstappen",
         "Bearman",
         "Norris",
         "Stroll",
-        "Bottas"
+        "Bottas",
+        "Leclerc",
+        "Sainz"
       ],
       "race": "Monaco",
-      "status": "started"
+      "status": "finished"
     },
     {
       "id": 8,
