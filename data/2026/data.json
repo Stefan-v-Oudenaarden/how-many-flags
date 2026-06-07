@@ -188,18 +188,81 @@
     },
     "6": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Alonso",
+        "winner": "Verstappen",
+        "flags": 1,
+        "drivers": 15
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Antonelli",
+        "flags": 3,
+        "drivers": 17,
+        "rating": 9
+      },
+      "Morrigan": {
+        "dnf": "Sainz",
+        "winner": "Antonelli",
+        "flags": 1,
+        "drivers": 20
+      },
+      "Alice": {
+        "dnf": "Bottas",
+        "winner": "Antonelli",
+        "flags": 3,
+        "drivers": 18
+      },
+      "Shaun": {
+        "dnf": "Stroll",
+        "winner": "Russell",
+        "flags": 1,
+        "drivers": 18,
+        "rating": 9
+      },
+      "Ben": {
+        "dnf": "Alonso",
+        "winner": "Antonelli",
+        "flags": 2,
+        "drivers": 17,
+        "rating": 9
       }
     },
     "7": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
+        "dnf": "Lawson",
+        "winner": "Norris",
+        "flags": 3,
+        "drivers": 17
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Verstappen",
+        "flags": 1,
+        "drivers": 20
+      },
+      "Morrigan": {
+        "dnf": "Sainz",
+        "winner": "Antonelli",
+        "flags": 1,
+        "drivers": 19
+      },
+      "Alice": {
+        "dnf": "Stroll",
+        "winner": "Antonelli",
         "flags": 0,
-        "drivers": 22
+        "drivers": 20
+      },
+      "Shaun": {
+        "dnf": "Sainz",
+        "winner": "Verstappen",
+        "flags": 1,
+        "drivers": 19
+      },
+      "Ben": {
+        "dnf": "Alonso",
+        "winner": "Verstappen",
+        "flags": 2,
+        "drivers": 18
       }
     },
     "8": {
@@ -416,23 +479,36 @@
     },
     {
       "id": 6,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
+      "flags": 3,
+      "drivers": 16,
+      "winner": "Antonelli",
+      "team": "Mercedes",
+      "dnfs": [
+        "Lindblad",
+        "Alonso",
+        "Albon",
+        "Russell",
+        "Norris",
+        "Perez"
+      ],
       "race": "Canada",
-      "status": "ready"
+      "status": "finished"
     },
     {
       "id": 7,
-      "flags": 0,
-      "drivers": 22,
+      "flags": 1,
+      "drivers": 17,
       "winner": "",
       "team": "",
-      "dnfs": [],
+      "dnfs": [
+        "Verstappen",
+        "Bearman",
+        "Norris",
+        "Stroll",
+        "Bottas"
+      ],
       "race": "Monaco",
-      "status": "ready"
+      "status": "started"
     },
     {
       "id": 8,
