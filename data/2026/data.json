@@ -267,10 +267,40 @@
     },
     "8": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Perez",
+        "winner": "Leclerc",
+        "flags": 3,
+        "drivers": 16
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Verstappen",
+        "flags": 2,
+        "drivers": 19
+      },
+      "Morrigan": {
+        "dnf": "Ocon",
+        "winner": "Russell",
+        "flags": 2,
+        "drivers": 18
+      },
+      "Alice": {
+        "dnf": "Stroll",
+        "winner": "Antonelli",
+        "flags": 3,
+        "drivers": 17
+      },
+      "Shaun": {
+        "dnf": "Leclerc",
+        "winner": "Russell",
+        "flags": 1,
+        "drivers": 17
+      },
+      "Ben": {
+        "dnf": "Bottas",
+        "winner": "Hamilton",
+        "flags": 1,
+        "drivers": 19
       }
     },
     "9": {
@@ -514,13 +544,21 @@
     },
     {
       "id": 8,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
+      "flags": 2,
+      "drivers": 19,
+      "winner": "Hamilton",
+      "team": "Ferrari",
+      "dnfs": [
+        "Alonso",
+        "Hulkenberg",
+        "Bottas",
+        "Stroll",
+        "Antonelli",
+        "Bearman",
+        "Leclerc"
+      ],
       "race": "Spain",
-      "status": "ready"
+      "status": "finished"
     },
     {
       "id": 9,
