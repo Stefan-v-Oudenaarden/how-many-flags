@@ -238,7 +238,8 @@
         "dnf": "Russell",
         "winner": "Verstappen",
         "flags": 1,
-        "drivers": 20
+        "drivers": 20,
+        "rating": 7.7
       },
       "Morrigan": {
         "dnf": "Sainz",
@@ -250,19 +251,22 @@
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 0,
-        "drivers": 20
+        "drivers": 20,
+        "rating": 7
       },
       "Shaun": {
         "dnf": "Sainz",
         "winner": "Verstappen",
         "flags": 1,
-        "drivers": 19
+        "drivers": 19,
+        "rating": 7
       },
       "Ben": {
         "dnf": "Alonso",
         "winner": "Verstappen",
         "flags": 2,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 9
       }
     },
     "8": {
@@ -276,31 +280,36 @@
         "dnf": "Russell",
         "winner": "Verstappen",
         "flags": 2,
-        "drivers": 19
+        "drivers": 19,
+        "rating": 6
       },
       "Morrigan": {
         "dnf": "Ocon",
         "winner": "Russell",
         "flags": 2,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 9
       },
       "Alice": {
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 3,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 6
       },
       "Shaun": {
         "dnf": "Leclerc",
         "winner": "Russell",
         "flags": 1,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 7
       },
       "Ben": {
         "dnf": "Bottas",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 19
+        "drivers": 19,
+        "rating": 7
       }
     },
     "9": {
@@ -314,31 +323,36 @@
         "dnf": "Russell",
         "winner": "Hamilton",
         "flags": 3,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 6
       },
       "Morrigan": {
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 19
+        "drivers": 19,
+        "rating": 5
       },
       "Alice": {
         "dnf": "Bortoleto",
         "winner": "Antonelli",
         "flags": 2,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 5
       },
       "Shaun": {
         "dnf": "Alonso",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 5
       },
       "Ben": {
         "dnf": "Bottas",
         "winner": "Russell",
         "flags": 2,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 6
       }
     },
     "10": {
@@ -352,31 +366,36 @@
         "dnf": "Stroll",
         "winner": "Hamilton",
         "flags": 3,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 7
       },
       "Morrigan": {
         "dnf": "Bottas",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 19
+        "drivers": 19,
+        "rating": 7
       },
       "Alice": {
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 2,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 7
       },
       "Shaun": {
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 7
       },
       "Ben": {
         "dnf": "Russell",
         "winner": "Hamilton",
         "flags": 3,
-        "drivers": 15
+        "drivers": 15,
+        "rating": 7
       }
     },
     "11": {
@@ -390,13 +409,15 @@
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 2,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 5
       },
       "Morrigan": {
         "dnf": "Ocon",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 18
+        "drivers": 18,
+        "rating": 4
       },
       "Alice": {
         "dnf": "",
@@ -406,21 +427,53 @@
         "dnf": "Stroll",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 17
+        "drivers": 17,
+        "rating": 5
       },
       "Ben": {
         "dnf": "Bottas",
         "winner": "Antonelli",
         "flags": 1,
-        "drivers": 19
+        "drivers": 19,
+        "rating": 5
       }
     },
     "12": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Bearman",
+        "winner": "Verstappen",
+        "flags": 1,
+        "drivers": 16
+      },
+      "MoonWolf": {
+        "dnf": "Stroll",
+        "winner": "Norris",
+        "flags": 2,
+        "drivers": 19
+      },
+      "Morrigan": {
+        "dnf": "Perez",
+        "winner": "Norris",
+        "flags": 1,
+        "drivers": 19
+      },
+      "Alice": {
+        "dnf": "Alonso",
+        "winner": "Leclerc",
+        "flags": 1,
+        "drivers": 20
+      },
+      "Shaun": {
+        "dnf": "Albon",
+        "winner": "Leclerc",
+        "flags": 2,
+        "drivers": 19
+      },
+      "Ben": {
+        "dnf": "Albon",
+        "winner": "Leclerc",
+        "flags": 2,
+        "drivers": 18
       }
     },
     "13": {
@@ -693,13 +746,17 @@
     },
     {
       "id": 12,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
+      "flags": 1,
+      "drivers": 19,
+      "winner": "Norris",
+      "team": "McLaren",
+      "dnfs": [
+        "Bottas",
+        "Perez",
+        "Piastri"
+      ],
       "race": "Hungary",
-      "status": "ready"
+      "status": "finished"
     },
     {
       "id": 13,
