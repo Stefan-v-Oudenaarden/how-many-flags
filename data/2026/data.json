@@ -668,10 +668,40 @@
     },
     "18": {
       "Pidgeons": {
-        "dnf": "",
-        "winner": "",
-        "flags": 0,
-        "drivers": 22
+        "dnf": "Alonso",
+        "winner": "Piastri",
+        "flags": 2,
+        "drivers": 18
+      },
+      "MoonWolf": {
+        "dnf": "Russell",
+        "winner": "Verstappen",
+        "flags": 1,
+        "drivers": 17
+      },
+      "Morrigan": {
+        "dnf": "Stroll",
+        "winner": "Antonelli",
+        "flags": 2,
+        "drivers": 18
+      },
+      "Alice": {
+        "dnf": "Perez",
+        "winner": "Verstappen",
+        "flags": 2,
+        "drivers": 18
+      },
+      "Shaun": {
+        "dnf": "Stroll",
+        "winner": "Verstappen",
+        "flags": 2,
+        "drivers": 16
+      },
+      "Ben": {
+        "dnf": "Bottas",
+        "winner": "Verstappen",
+        "flags": 1,
+        "drivers": 20
       }
     },
     "19": {
@@ -988,13 +1018,17 @@
     },
     {
       "id": 18,
-      "flags": 0,
-      "drivers": 22,
-      "winner": "",
-      "team": "",
-      "dnfs": [],
-      "race": "Austin",
-      "status": "ready"
+      "flags": 2,
+      "drivers": 18,
+      "winner": "Verstappen",
+      "team": "Red Bull Racing",
+      "dnfs": [
+        "Bortoleto",
+        "Colapinto",
+        "Stroll"
+      ],
+      "race": "Singapore",
+      "status": "finished"
     },
     {
       "id": 19,
